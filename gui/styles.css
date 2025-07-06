@@ -1,0 +1,710 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow: hidden; /* Prevent body scrolling */
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header - Compact design to fit in viewport */
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.header h1 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/**
+ * Main Content - Three Panel Horizontal Layout
+ * This creates a horizontal three-column layout that fits exactly in the viewport:
+ * 1. Configuration Panel (Left) - Settings and options
+ * 2. Controls Panel (Middle) - Buttons, progress, and activity log
+ * 3. Statistics Panel (Right) - Real-time metrics
+ * The layout uses flexbox for responsive design and optimal space utilization
+ */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex: 1; /* Take remaining space after header */
+    min-height: 0; /* Allow content to shrink */
+}
+
+/**
+ * Configuration Panel (Left) - Settings and options
+ * Contains all configuration options including business category selection,
+ * search terms, zip code, parallel pages, and extraction options
+ */
+.config-panel {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    overflow-y: auto; /* Allow scrolling within panel if needed */
+}
+
+/**
+ * Controls Panel (Middle) - Buttons, progress, and activity log
+ * This panel contains two sections:
+ * 1. Control Section - Start/stop buttons, progress bar, status
+ * 2. Log Section - Activity log with real-time updates
+ * Uses flexbox column layout to stack sections vertically
+ */
+.controls-panel {
+    flex: 1.5;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden; /* Prevent panel overflow */
+}
+
+/**
+ * Statistics Panel (Right) - Real-time metrics
+ * Displays live statistics including pages processed, businesses found,
+ * data fields extracted, and success rate
+ */
+.stats-panel {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    overflow-y: auto; /* Allow scrolling within panel if needed */
+}
+
+/* Panels - Base styling for all panels */
+.config-panel,
+.controls-panel,
+.stats-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+/* Panel headers */
+.config-panel h2,
+.controls-panel h2,
+.stats-panel h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/**
+ * Controls Panel Sections
+ * These are the two main sections within the controls panel:
+ * 1. Control Section - Contains buttons, progress bar, and status
+ * 2. Log Section - Contains the activity log with scrollable content
+ * Both sections have consistent styling with glassmorphism effect
+ */
+.control-section,
+.log-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.control-section h2,
+.log-section h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* Form Groups - Compact spacing for viewport fit */
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-control:disabled {
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* Parallel Controls - Horizontal layout for parallel page adjustment */
+.parallel-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Center the number input and make it prominent */
+.parallel-controls .form-control {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Style the increase/decrease buttons as compact circular buttons */
+.parallel-controls .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.checkbox-item:hover {
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.checkbox-item input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark {
+    background: #3498db;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(149, 165, 166, 0.3);
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+    background: #138496;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.btn-sm {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.btn.active {
+    background: #27ae60;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-bottom: 20px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ecf0f1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* Status Indicator */
+.status-container {
+    text-align: center;
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.status-indicator.ready {
+    background: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+}
+
+.status-indicator.running {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2980b9;
+}
+
+.status-indicator.error {
+    background: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+}
+
+.status-indicator.complete {
+    background: rgba(155, 89, 182, 0.1);
+    color: #8e44ad;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.ready .status-dot {
+    background: #27ae60;
+}
+
+.status-indicator.running .status-dot {
+    background: #2980b9;
+}
+
+.status-indicator.error .status-dot {
+    background: #c0392b;
+}
+
+.status-indicator.complete .status-dot {
+    background: #8e44ad;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Log section styling within controls panel */
+.log-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Allow log section to shrink */
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.log-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.log-container {
+    flex: 1;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f9fa;
+    min-height: 0; /* Allow container to shrink */
+}
+
+.log-content {
+    height: 100%;
+    overflow-y: auto;
+    padding: 15px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.log-entry {
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-timestamp {
+    color: #6c757d;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.log-message {
+    color: #2c3e50;
+}
+
+.log-entry.info .log-message {
+    color: #2980b9;
+}
+
+.log-entry.success .log-message {
+    color: #27ae60;
+}
+
+.log-entry.warning .log-message {
+    color: #f39c12;
+}
+
+.log-entry.error .log-message {
+    color: #c0392b;
+}
+
+/* Statistics Panel - Right side panel */
+.stats-panel {
+    /* Removed grid-column as it's now a standalone panel */
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 12px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 8px;
+    border: 2px solid rgba(52, 152, 219, 0.2);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 20px 25px;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    padding: 20px 25px;
+    border-top: 2px solid #e0e0e0;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        height: auto;
+        overflow: auto;
+    }
+    
+    .main-content {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .config-panel,
+    .controls-panel,
+    .stats-panel {
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .controls-panel {
+        flex-direction: column;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .parallel-controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .parallel-controls .btn {
+        width: 100%;
+        height: 35px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .log-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
+
+/* Scrollbar Styling */
+.log-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.log-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.log-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.log-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+} 

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellowpages.com Scraper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🟡 Yellowpages.com Scraper</h1>
+            <p>Comprehensive business data extraction with GUI interface</p>
+        </header>
+
+        <!-- Main Content - Three Panel Horizontal Layout -->
+        <div class="main-content">
+            <!-- Configuration Panel (Left) -->
+            <div class="config-panel">
+                <h2>⚙️ Configuration</h2>
+                
+                <!-- Business Category Selection -->
+                <div class="form-group">
+                    <label for="categorySelect">Business Category:</label>
+                    <select id="categorySelect" class="form-control">
+                        <option value="">Select a category...</option>
+                    </select>
+                </div>
+
+                <!-- Subcategory Selection -->
+                <div class="form-group">
+                    <label for="subcategorySelect">Subcategory:</label>
+                    <select id="subcategorySelect" class="form-control" disabled>
+                        <option value="">Select a subcategory...</option>
+                    </select>
+                </div>
+
+                <!-- Custom Search -->
+                <div class="form-group">
+                    <label for="customSearch">Custom Search Term:</label>
+                    <input type="text" id="customSearch" class="form-control" placeholder="Enter custom search term...">
+                </div>
+
+                <!-- Zip Code -->
+                <div class="form-group">
+                    <label for="zipCode">Zip Code:</label>
+                    <input type="text" id="zipCode" class="form-control" placeholder="Enter zip code..." required>
+                </div>
+
+                <!-- Parallel Processing -->
+                <div class="form-group">
+                    <label for="parallelPages">Parallel Pages:</label>
+                    <div class="parallel-controls">
+                        <button type="button" id="decreaseParallel" class="btn btn-sm btn-secondary">-</button>
+                        <input type="number" id="parallelPages" class="form-control" value="3" min="1" max="20">
+                        <button type="button" id="increaseParallel" class="btn btn-sm btn-secondary">+</button>
+                    </div>
+                    <small>Number of pages to scrape simultaneously (1-20)</small>
+                </div>
+
+                <!-- Options Checkboxes -->
+                <div class="form-group">
+                    <label>Options:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="extractPhotos" checked>
+                            <span class="checkmark"></span>
+                            Extract Photos
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="extractReviews" checked>
+                            <span class="checkmark"></span>
+                            Extract Reviews
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="extractRatings" checked>
+                            <span class="checkmark"></span>
+                            Extract Ratings
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="extractContact" checked>
+                            <span class="checkmark"></span>
+                            Extract Contact Info
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="extractHours" checked>
+                            <span class="checkmark"></span>
+                            Extract Business Hours
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="extractServices" checked>
+                            <span class="checkmark"></span>
+                            Extract Services
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Panel (Middle) - Includes Activity Log -->
+            <div class="controls-panel">
+                <!-- Control Buttons Section -->
+                <div class="control-section">
+                <h2>🎮 Controls</h2>
+                
+                <div class="button-group">
+                    <button id="startBtn" class="btn btn-primary">
+                        🚀 Start Scraping
+                    </button>
+                    <button id="stopBtn" class="btn btn-danger" disabled>
+                        ⏹️ Stop Scraping
+                    </button>
+                    <button id="clearLogBtn" class="btn btn-secondary">
+                        🗑️ Clear Log
+                    </button>
+                    <button id="openFolderBtn" class="btn btn-info" disabled>
+                        📁 Open Project Folder
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span id="progressText">Ready to start</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="status-container">
+                    <div id="statusIndicator" class="status-indicator ready">
+                        <span class="status-dot"></span>
+                        <span id="statusText">Ready</span>
+                </div>
+            </div>
+        </div>
+
+                <!-- Activity Log Section -->
+                <div class="log-section">
+            <div class="log-header">
+                <h2>📋 Activity Log</h2>
+                <div class="log-controls">
+                    <button id="autoScrollBtn" class="btn btn-sm btn-secondary active">
+                        Auto-scroll
+                    </button>
+                    <button id="exportLogBtn" class="btn btn-sm btn-secondary">
+                        Export Log
+                    </button>
+                </div>
+            </div>
+            <div id="logContainer" class="log-container">
+                <div id="logContent" class="log-content">
+                    <div class="log-entry info">
+                        <span class="log-timestamp">[System]</span>
+                        <span class="log-message">Yellowpages.com Scraper GUI loaded successfully</span>
+                    </div>
+                    <div class="log-entry info">
+                        <span class="log-timestamp">[System]</span>
+                        <span class="log-message">Select a business category and configure your scraping session</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Statistics Panel (Right) -->
+        <div class="stats-panel">
+            <h2>📊 Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Pages Processed</div>
+                    <div id="pagesProcessed" class="stat-value">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Businesses Found</div>
+                    <div id="businessesFound" class="stat-value">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Data Fields</div>
+                    <div id="dataFields" class="stat-value">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Success Rate</div>
+                    <div id="successRate" class="stat-value">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for errors -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>❌ Error</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeErrorModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html> 

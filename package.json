@@ -1,0 +1,75 @@
+{
+  "name": "yellowpages-scraper",
+  "version": "1.0.0",
+  "description": "A comprehensive web scraping tool for Yellowpages.com with dynamic field discovery, project organization, and GUI interface",
+  "main": "gui/main.js",
+  "bin": {
+    "yellowpages-scraper": "./main.js"
+  },
+  "scripts": {
+    "start": "node main.js",
+    "gui": "electron .",
+    "gui-dev": "electron . --dev",
+    "build": "pkg . --targets node18-win-x64 --output yellowpages-scraper.exe",
+    "build-portable": "pkg . --targets node18-win-x64 --output yellowpages-scraper-portable.exe --public",
+    "build-gui": "electron-builder",
+    "dist": "electron-builder --publish=never"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/**/*"
+    ],
+    "scripts": [
+      "main.js",
+      "config.js",
+      "browserManager.js",
+      "linkExtractor.js",
+      "dataExtractor.js",
+      "csvUtils.js"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ]
+  },
+  "build": {
+    "appId": "com.yellowpages.scraper",
+    "productName": "Yellowpages Scraper",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "gui/**/*",
+      "*.js",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "gui/assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "keywords": [
+    "web-scraping",
+    "yellowpages",
+    "business-data",
+    "puppeteer",
+    "automation",
+    "gui",
+    "electron"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
