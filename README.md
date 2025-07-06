@@ -1,10 +1,13 @@
 # Yellowpages.com Business Scraper
 
+![1751782203633](image/README/1751782203633.png)
+
 A comprehensive, modular web scraping tool designed to extract business information from Yellowpages.com. This tool is built with Node.js and Puppeteer, featuring dynamic field discovery, parallel processing, and robust error handling.
 
 ## 🚀 Features
 
 ### Core Functionality
+
 - **Dynamic Field Discovery**: Automatically detects and extracts all available data fields on business detail pages
 - **Parallel Processing**: Scrapes multiple search result pages simultaneously for improved performance
 - **Comprehensive Data Extraction**: Captures 100+ different data fields including:
@@ -18,6 +21,7 @@ A comprehensive, modular web scraping tool designed to extract business informat
   - Geographic data and service areas
 
 ### Technical Features
+
 - **Modular Architecture**: Clean separation of concerns across multiple modules
 - **Stealth Mode**: Uses puppeteer-extra with stealth plugin to avoid detection
 - **Resource Optimization**: Blocks unnecessary resources (images, stylesheets, fonts) for faster scraping
@@ -27,6 +31,7 @@ A comprehensive, modular web scraping tool designed to extract business informat
 - **Detailed Logging**: Complete audit trail with timestamped log files
 
 ### User Interface
+
 - **Modern GUI**: Electron-based desktop application with intuitive interface
 - **Interactive CLI**: Menu-driven configuration with business categories and subcategories
 - **Custom Search Support**: Option to enter custom search terms
@@ -46,19 +51,20 @@ A comprehensive, modular web scraping tool designed to extract business informat
 ### Option 1: GUI Application (Recommended for All Users)
 
 1. **Launch the GUI**
+
    - **Windows**: Double-click `run-gui.bat` or `run-gui.ps1`
    - **Development**: `npm run gui` or `npm run gui-dev`
-
 2. **Build GUI executable**
+
    ```bash
    # Run the build script
    build-gui-executable.bat
-   
+
    # Or manually
    npm run build-gui
    ```
-
 3. **Install GUI application**
+
    - Run the generated installer: `dist\Yellowpages Scraper Setup.exe`
    - Follow the installation wizard
    - Launch from Start Menu or desktop shortcut
@@ -66,20 +72,21 @@ A comprehensive, modular web scraping tool designed to extract business informat
 ### Option 2: Windows CLI Executable
 
 1. **Download the executable**
+
    - Download `yellowpages-scraper.exe` from the releases
    - Or build your own using the build script
-
 2. **Build your own executable**
+
    ```bash
    # Run the build script
    build-executable.bat
-   
+
    # Or manually
    npm install
    npm run build
    ```
-
 3. **Run the executable**
+
    - Double-click `yellowpages-scraper.exe`
    - Or use the batch file: `run-scraper.bat`
    - Or use PowerShell: `.\run-scraper.ps1`
@@ -87,17 +94,18 @@ A comprehensive, modular web scraping tool designed to extract business informat
 ### Option 2: Source Code Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/yellowpages-scraper.git
    cd yellowpages-scraper
    ```
-
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
-
 3. **Verify Chrome installation**
+
    - Ensure Google Chrome is installed at the default location
    - The scraper is configured to use: `C:\Program Files\Google\Chrome\Application\chrome.exe`
    - For different Chrome locations, update the path in `browserManager.js`
@@ -107,11 +115,13 @@ A comprehensive, modular web scraping tool designed to extract business informat
 ### GUI Application (Recommended)
 
 #### Launch Options
+
 - **Windows Batch**: Double-click `run-gui.bat`
 - **Windows PowerShell**: Right-click `run-gui.ps1` → "Run with PowerShell"
 - **Development**: `npm run gui` or `npm run gui-dev`
 
 #### GUI Features
+
 - **Visual Configuration**: Dropdown menus for categories and subcategories
 - **Custom Search**: Text input for custom search terms
 - **Data Options**: Checkboxes to select which data to extract
@@ -124,16 +134,19 @@ A comprehensive, modular web scraping tool designed to extract business informat
 #### Windows Users
 
 ##### Option 1: Executable
+
 - **Double-click** `yellowpages-scraper.exe`
 - No command line required
 - Automatic dependency checking
 
 ##### Option 2: Batch File
+
 - **Double-click** `run-scraper.bat`
 - Automatic dependency installation
 - User-friendly error messages
 
 ##### Option 3: PowerShell
+
 - **Right-click** `run-scraper.ps1` → "Run with PowerShell"
 - Modern interface with colors
 - Advanced error handling
@@ -141,18 +154,19 @@ A comprehensive, modular web scraping tool designed to extract business informat
 ### Command Line Usage
 
 1. **Start the scraper**
+
    ```bash
    node main.js
    ```
-
 2. **Follow the interactive prompts**
+
    - Select a business category (Auto Services, Beauty, Home Services, etc.)
    - Choose a subcategory (optional)
    - Enter your zip code
    - Set the number of pages to scrape in parallel (default: 3)
    - Confirm your configuration
-
 3. **Monitor progress**
+
    - The scraper will display real-time progress with emoji indicators
    - Progress is saved to CSV after each batch
    - A detailed log file is created at the end
@@ -160,6 +174,7 @@ A comprehensive, modular web scraping tool designed to extract business informat
 ### Configuration Options
 
 #### Business Categories Available
+
 - **Auto Services**: Auto repair, detailing, towing, etc.
 - **Beauty**: Salons, spas, barber shops, etc.
 - **Home Services**: HVAC, plumbing, electrical, etc.
@@ -171,6 +186,7 @@ A comprehensive, modular web scraping tool designed to extract business informat
 - **Custom Search**: Enter any custom search term
 
 #### Parallel Processing
+
 - Control how many pages are scraped simultaneously
 - Higher values = faster scraping but more resource usage
 - Recommended: 3-5 for stable performance
@@ -210,6 +226,7 @@ yellowpages-scraper/
 ### Module Descriptions
 
 #### `main.js` - Main Orchestration
+
 - Coordinates the entire scraping process
 - Manages browser lifecycle and page creation
 - Handles parallel processing and batch operations
@@ -217,24 +234,28 @@ yellowpages-scraper/
 - Saves progress to CSV after each batch
 
 #### `config.js` - Configuration Management
+
 - Defines business categories and subcategories
 - Provides interactive CLI for user input
 - Validates and confirms configuration settings
 - Exports configuration object for use by other modules
 
 #### `browserManager.js` - Browser Management
+
 - Launches Puppeteer browser with stealth configuration
 - Sets up page headers and user agents
 - Blocks unnecessary resources for performance
 - Configures viewport and browser arguments
 
 #### `linkExtractor.js` - Link Extraction
+
 - Extracts business detail links from search result pages
 - Filters out advertisements and duplicate listings
 - Determines total number of result pages
 - Ensures only organic business listings are processed
 
 #### `dataExtractor.js` - Data Extraction
+
 - Analyzes available fields on business detail pages
 - Dynamically discovers new data fields during scraping
 - Extracts comprehensive business information
@@ -242,6 +263,7 @@ yellowpages-scraper/
 - Creates individual columns for photos and reviews
 
 #### `csvUtils.js` - CSV Operations
+
 - Converts extracted data to CSV format
 - Ensures all rows have all columns (backfilling missing values)
 - Handles CSV escaping and special characters
@@ -250,7 +272,9 @@ yellowpages-scraper/
 ## 📊 Output Files
 
 ### Project Folder Structure
+
 Each scraping session creates a dedicated project folder with the following structure:
+
 ```
 {searchTerm}_{zipCode}_{date}/
 ├── final_results_{count}_businesses.csv    # Final complete dataset
@@ -262,16 +286,19 @@ Each scraping session creates a dedicated project folder with the following stru
 ### File Descriptions
 
 #### Final Results CSV
+
 - **Filename**: `final_results_{count}_businesses.csv`
 - **Format**: UTF-8 encoded CSV with dynamic headers
 - **Content**: Complete dataset with all extracted business data
 
 #### Progress Files
+
 - **Filename**: `progress_batch_{start}-{end}_{count}_businesses.csv`
 - **Purpose**: Intermediate saves after each batch for data safety
 - **Content**: Cumulative data up to that batch
 
 #### Log File
+
 - **Filename**: `scrape_log_{timestamp}.log`
 - **Format**: Plain text with timestamped entries
 - **Content**: Complete audit trail including:
@@ -282,6 +309,7 @@ Each scraping session creates a dedicated project folder with the following stru
   - Performance metrics
 
 #### Project Summary
+
 - **Filename**: `project_summary.txt`
 - **Content**: Overview of the scraping session including:
   - Search parameters and configuration
@@ -294,6 +322,7 @@ Each scraping session creates a dedicated project folder with the following stru
 ### Data Fields Extracted
 
 #### Basic Information
+
 - Business name, title, company name
 - Phone numbers (cleaned of "Call" text)
 - Address and location data
@@ -301,6 +330,7 @@ Each scraping session creates a dedicated project folder with the following stru
 - Email addresses
 
 #### Ratings and Reviews
+
 - Yellowpages ratings and review counts
 - TripAdvisor ratings and reviews
 - Google, Facebook, Yelp ratings
@@ -308,6 +338,7 @@ Each scraping session creates a dedicated project folder with the following stru
 - Review authors, dates, ratings, and text
 
 #### Business Details
+
 - Years in business
 - Price ranges and payment methods
 - Operating hours and business status
@@ -315,11 +346,13 @@ Each scraping session creates a dedicated project folder with the following stru
 - Certifications and awards
 
 #### Media and Photos
+
 - Photo gallery URLs (up to 20 photos per business)
 - Business photos, gallery images, carousel photos
 - Photo metadata and full-size image URLs
 
 #### Additional Information
+
 - Social media links
 - Action links (directions, reviews, website, etc.)
 - Business status (claimed, verified)
@@ -329,16 +362,19 @@ Each scraping session creates a dedicated project folder with the following stru
 ### Performance Optimizations
 
 #### Resource Blocking
+
 - Blocks images, stylesheets, and fonts
 - Reduces bandwidth usage and improves speed
 - Maintains functionality while optimizing performance
 
 #### Parallel Processing
+
 - Configurable parallelism for search page scraping
 - Sequential processing for business detail pages (to allow dynamic field discovery)
 - Batch-based progress saving
 
 #### Error Handling
+
 - Graceful handling of network timeouts
 - Retry logic for failed page loads
 - Comprehensive error logging
@@ -347,17 +383,20 @@ Each scraping session creates a dedicated project folder with the following stru
 ## ⚠️ Important Notes
 
 ### Rate Limiting
+
 - Built-in delays between requests to avoid overwhelming the server
 - Respectful scraping practices to maintain site accessibility
 - Configurable delays for different use cases
 
 ### Legal and Ethical Considerations
+
 - This tool is for educational and research purposes
 - Respect Yellowpages.com's terms of service
 - Use responsibly and avoid excessive requests
 - Consider the impact on the target website
 
 ### Browser Requirements
+
 - Requires Google Chrome to be installed
 - Uses Chrome's executable path for Puppeteer
 - Stealth mode helps avoid detection
@@ -367,33 +406,43 @@ Each scraping session creates a dedicated project folder with the following stru
 ### Common Issues
 
 #### Chrome Not Found
+
 ```
 Error: Failed to launch browser
 ```
+
 **Solution**: Verify Chrome is installed and update the path in `browserManager.js`
 
 #### Network Timeouts
+
 ```
 Error: Navigation timeout
 ```
+
 **Solution**: Check internet connection and try reducing parallel page count
 
 #### No Data Extracted
+
 ```
 Warning: No data extracted from URL
 ```
+
 **Solution**: The page structure may have changed. Check the log file for details.
 
 #### Memory Issues
+
 ```
 Error: JavaScript heap out of memory
 ```
+
 **Solution**: Reduce parallel page count or increase Node.js memory limit:
+
 ```bash
 node --max-old-space-size=4096 main.js
 ```
 
 ### Debug Mode
+
 - Check the generated log file for detailed error information
 - Log files contain timestamps and specific error messages
 - Use log entries to identify problematic URLs or pages
@@ -407,6 +456,7 @@ node --max-old-space-size=4096 main.js
 5. Open a Pull Request
 
 ### Development Guidelines
+
 - Follow the existing code structure and commenting style
 - Add comprehensive comments for new functionality
 - Test changes with different business categories
@@ -425,10 +475,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For issues, questions, or contributions:
+
 - Create an issue on GitHub
 - Check the troubleshooting section above
 - Review the log files for detailed error information
 
 ---
 
-**Disclaimer**: This tool is for educational purposes. Please respect website terms of service and use responsibly. 
+**Disclaimer**: This tool is for educational purposes. Please respect website terms of service and use responsibly.
