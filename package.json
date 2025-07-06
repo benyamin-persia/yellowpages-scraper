@@ -1,8 +1,43 @@
 {
+  "name": "yellowpages-scraper",
+  "version": "1.0.0",
+  "description": "Comprehensive Yellowpages.com business scraper with data mining and visualization capabilities",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "scrape": "node main.js",
+    "analyze": "node dataMiningRunner.js",
+    "quick-analysis": "node -e \"const { quickAnalysis } = require('./dataMiningRunner'); const fs = require('fs'); const csvFiles = fs.readdirSync('.').filter(f => f.endsWith('.csv')); if(csvFiles.length > 0) quickAnalysis(csvFiles[0]); else console.log('No CSV files found');\"",
+    "full-pipeline": "node -e \"const { runDataMiningPipeline } = require('./dataMiningRunner'); const fs = require('fs'); const csvFiles = fs.readdirSync('.').filter(f => f.endsWith('.csv')); if(csvFiles.length > 0) runDataMiningPipeline(csvFiles[0]); else console.log('No CSV files found');\""
+  },
+  "keywords": [
+    "web-scraping",
+    "yellowpages",
+    "business-data",
+    "data-mining",
+    "data-visualization",
+    "puppeteer",
+    "nodejs",
+    "analytics",
+    "business-intelligence"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
     "csv-parser": "^3.2.0",
     "puppeteer": "^24.11.2",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
-  }
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/yellowpages-scraper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/yellowpages-scraper/issues"
+  },
+  "homepage": "https://github.com/yourusername/yellowpages-scraper#readme"
 }
