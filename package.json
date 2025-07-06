@@ -1,8 +1,46 @@
 {
+  "name": "yellowpages-scraper",
+  "version": "1.0.0",
+  "description": "A comprehensive web scraping tool for Yellowpages.com with dynamic field discovery and project organization",
+  "main": "main.js",
+  "bin": {
+    "yellowpages-scraper": "./main.js"
+  },
+  "scripts": {
+    "start": "node main.js",
+    "build": "pkg . --targets node18-win-x64 --output yellowpages-scraper.exe",
+    "build-portable": "pkg . --targets node18-win-x64 --output yellowpages-scraper-portable.exe --public"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/**/*"
+    ],
+    "scripts": [
+      "main.js",
+      "config.js",
+      "browserManager.js",
+      "linkExtractor.js",
+      "dataExtractor.js",
+      "csvUtils.js"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ]
+  },
   "dependencies": {
-    "csv-parser": "^3.2.0",
-    "puppeteer": "^24.11.2",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
-  }
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "keywords": [
+    "web-scraping",
+    "yellowpages",
+    "business-data",
+    "puppeteer",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
 }

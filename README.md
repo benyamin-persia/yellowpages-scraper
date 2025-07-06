@@ -40,6 +40,29 @@ A comprehensive, modular web scraping tool designed to extract business informat
 
 ## 🛠️ Installation
 
+### Option 1: Windows Executable (Recommended for Windows Users)
+
+1. **Download the executable**
+   - Download `yellowpages-scraper.exe` from the releases
+   - Or build your own using the build script
+
+2. **Build your own executable**
+   ```bash
+   # Run the build script
+   build-executable.bat
+   
+   # Or manually
+   npm install
+   npm run build
+   ```
+
+3. **Run the executable**
+   - Double-click `yellowpages-scraper.exe`
+   - Or use the batch file: `run-scraper.bat`
+   - Or use PowerShell: `.\run-scraper.ps1`
+
+### Option 2: Source Code Installation
+
 1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/yellowpages-scraper.git
@@ -58,7 +81,24 @@ A comprehensive, modular web scraping tool designed to extract business informat
 
 ## 🎯 Usage
 
-### Basic Usage
+### Windows Users (Recommended)
+
+#### Option 1: Executable
+- **Double-click** `yellowpages-scraper.exe`
+- No command line required
+- Automatic dependency checking
+
+#### Option 2: Batch File
+- **Double-click** `run-scraper.bat`
+- Automatic dependency installation
+- User-friendly error messages
+
+#### Option 3: PowerShell
+- **Right-click** `run-scraper.ps1` → "Run with PowerShell"
+- Modern interface with colors
+- Advanced error handling
+
+### Command Line Usage
 
 1. **Start the scraper**
    ```bash
@@ -99,14 +139,18 @@ A comprehensive, modular web scraping tool designed to extract business informat
 
 ```
 yellowpages-scraper/
-├── main.js              # Main orchestration script
-├── config.js            # Configuration and user interface
-├── browserManager.js    # Browser setup and management
-├── linkExtractor.js     # Extract business links from search pages
-├── dataExtractor.js     # Extract detailed business data
-├── csvUtils.js          # CSV generation and file operations
-├── package.json         # Dependencies and project metadata
-├── README.md           # This file
+├── main.js                    # Main orchestration script
+├── config.js                  # Configuration and user interface
+├── browserManager.js          # Browser setup and management
+├── linkExtractor.js           # Extract business links from search pages
+├── dataExtractor.js           # Extract detailed business data
+├── csvUtils.js                # CSV generation and file operations
+├── package.json               # Dependencies and project metadata
+├── README.md                  # This file
+├── run-scraper.bat            # Windows batch file launcher
+├── run-scraper.ps1            # Windows PowerShell launcher
+├── build-executable.bat       # Build executable script
+├── yellowpages-scraper.exe    # Standalone Windows executable (after build)
 └── {searchTerm}_{zipCode}_{date}/  # Project-specific output folders
     ├── final_results_{count}_businesses.csv
     ├── progress_batch_{range}_{count}_businesses.csv
