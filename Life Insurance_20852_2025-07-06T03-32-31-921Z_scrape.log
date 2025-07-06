@@ -1,0 +1,407 @@
+[INFO] Browser launched at 2025-07-06T03:29:36.265Z
+[INFO] Scraping started for: Insurance - Life Insurance in 20852 | URL: https://www.yellowpages.com/search?search_terms=Life%20Insurance&geo_location_terms=20852&page=1
+[INFO] Detected total pages: 12
+[INFO] Scraping pages: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+[INFO] Page 6: Found 30 YP links
+[INFO] Page 3: Found 30 YP links
+[INFO] Page 2: Found 30 YP links
+[INFO] Page 4: Found 30 YP links
+[INFO] Page 8: Found 30 YP links
+[INFO] Page 10: Found 30 YP links
+[INFO] Page 5: Found 30 YP links
+[INFO] Page 7: Found 30 YP links
+[INFO] Page 9: Found 30 YP links
+[INFO] Page 1: Found 30 YP links
+[INFO] Found new fields: businessName, businessNameAlt, phone, address, website, categories, yearsInBusiness, directionsLink, email, associations, reviewsSection, photos, photoCarousel, photoCollage, mediaThumbnails, businessId, languages, listing-cardSection, business-card_non-paid-listingSection, sales-infoSection, primary-infoSection, mobile-claimed-categorySection, categoriesSection, ratings_no-ratingsSection, rating-stars_zero__Section, additional-attributesSection, years-in-businessSection, countSection, labelSection, default-ctasSection, claim-listingSection, business-customizeSection, claim-ctaSection, aside-hoursSection, open-detailsSection, top-left-adSection, div-gpt-ad-1555711099765-0Section, google_ads_iframe_/53532708/ca-pub-3200418779552017-tag/YP_MIP_300_0__container__Section, cross-links_mobile-hide-show_mib-loaded_show-fullSection, view-more-btnSection, main-contentSection, main-sectionSection, business-details-asp_list-viewSection, endt-wrapper_topSection, top-endtblockSection, business-infoSection, gallerySection, gallery-headerSection, add-photosSection, collageSection, carouselSection, collage-itemSection, review-rating-fieldSection, add-review-greetingSection, rating-fieldSection, yp-reviews-containerSection, reviews-containerSection, details-cardSection, bottom-action-wrapperSection, icon-text-blockSection, view-btn-textSection, suggest-edit-blockSection, edit-business_uitl_view-icon-arrow-btnSection, bottom-asp_clearfixSection, endt-wrapper_bottomSection, bottom-endtblockSection
+[INFO] Extracted: Allstate Insurance: Debbie Vazzana (66 fields) from https://www.yellowpages.com/silver-spring-md/mip/allstate-insurance-debbie-vazzana-13739013
+[INFO] Found new fields: uitlSection, be-the-firstSection
+[INFO] Found new fields: time-infoSection, status-text_closed_nowSection, yext-special-offerSection, content-attributionSection
+[INFO] Extracted: Capitol Financial Partners (51 fields) from https://www.yellowpages.com/vienna-va/mip/capitol-financial-partners-479515820
+[INFO] Extracted: Paul Pourreza - Mutual of Omaha Advisor (61 fields) from https://www.yellowpages.com/gaithersburg-md/mip/paul-pourreza-mutual-of-omaha-advisor-547185157
+[INFO] Found new fields: endt-wrapper_top_show-blockSection, bottom-asp_clearfix_hideSection, endt-wrapper_bottom_show-blockSection
+[INFO] Found new fields: amenities, reviewsLink, reviews, reviewTitles, reviewResponses, business-card_paid-listingSection, claimedSection, ratingsSection, rating-stars_five__Section, prev_disabledSection, nextSection, ef2d62b8-c76d-11dc-97c8-001b782efa64-784Section, entry_clearfixSection, review-infoSection, review-datesSection, result-ratings_overallSection, rating-indicator_five___Section, rating-labelSection, review-responseSection, add-business-responseSection, review-actionsSection, e16bc88a-c610-11dc-806f-001b782efa64-422Section, fabe82e4-c60d-11dc-a24d-001b78052720-272Section
+[INFO] Extracted: Prudential Financial (50 fields) from https://www.yellowpages.com/rockville-md/mip/prudential-financial-566426798
+[INFO] Extracted: Michael Palmiotto - State Farm Insurance Agent (110 fields) from https://www.yellowpages.com/silver-spring-md/mip/michael-palmiotto-state-farm-insurance-agent-21754839?lid=1001207330457
+[INFO] Extracted: Ellen Tillman, Financial Advisor - Ellen Tillman & Company (59 fields) from https://www.yellowpages.com/bethesda-md/mip/ellen-tillman-financial-advisor-ellen-tillman-company-576483367
+[INFO] Extracted: Buddy Gibson-Nationwide Insurance (62 fields) from https://www.yellowpages.com/rockville-md/mip/buddy-gibson-nationwide-insurance-4814121
+[INFO] Extracted: Tim Breidenstein - State Farm Insurance Agent (65 fields) from https://www.yellowpages.com/olney-md/mip/tim-breidenstein-state-farm-insurance-agent-474073558
+[INFO] Extracted: Allstate Insurance: Elizabeth Carroll (67 fields) from https://www.yellowpages.com/bethesda-md/mip/allstate-insurance-elizabeth-carroll-504698483
+[INFO] Extracted: Erin Caines, Financial Advisor - Eagle Strategies (59 fields) from https://www.yellowpages.com/bethesda-md/mip/erin-caines-financial-advisor-eagle-strategies-578587585
+[INFO] Extracted: Kevin Voritskul - State Farm Insurance Agent (76 fields) from https://www.yellowpages.com/silver-spring-md/mip/kevin-voritskul-state-farm-insurance-agent-529744486
+[INFO] Found new fields: years-with-ypSection
+[INFO] Extracted: Jenny Kim, Agent-New York Life (55 fields) from https://www.yellowpages.com/vienna-va/mip/jenny-kim-agent-new-york-life-578910058
+[INFO] Extracted: Kathy Duling - State Farm Insurance Agent (66 fields) from https://www.yellowpages.com/rockville-md/mip/kathy-duling-state-farm-insurance-agent-4334771?lid=1000157477721
+[INFO] Extracted: FemFal Insurance and Realty Solutions (56 fields) from https://www.yellowpages.com/silver-spring-md/mip/femfal-insurance-and-realty-solutions-571911022
+[INFO] Extracted: Jennifer Smigal - State Farm Insurance Agent (75 fields) from https://www.yellowpages.com/silver-spring-md/mip/jennifer-smigal-state-farm-insurance-agent-19299895?lid=1000157483081
+[INFO] Extracted: Raylonte Roach, Financial Advisor - Reveal Wealth (59 fields) from https://www.yellowpages.com/bethesda-md/mip/raylonte-roach-financial-advisor-reveal-wealth-576738947
+[INFO] Extracted: Nationwide Insurance (62 fields) from https://www.yellowpages.com/olney-md/mip/nationwide-insurance-496653182
+[INFO] Found new fields: hours, status-text_open_24_hoursSection
+[INFO] Extracted: The Insurance Exchange (61 fields) from https://www.yellowpages.com/rockville-md/mip/the-insurance-exchange-459189805
+[INFO] Extracted: Robert Ugiansky, Partner - Capital Associates Wealth Management (59 fields) from https://www.yellowpages.com/bethesda-md/mip/robert-ugiansky-partner-capital-associates-wealth-management-578604445
+[INFO] Extracted: D Financial Group Inc (54 fields) from https://www.yellowpages.com/rockville-md/mip/d-financial-group-inc-462571624
+[INFO] Extracted: Farmers Insurance - Edwin Lopez (68 fields) from https://www.yellowpages.com/kensington-md/mip/farmers-insurance-edwin-lopez-504001917
+[INFO] Found new fields: socialMedia, socialLinks
+[INFO] Extracted: Joe Van Dalsum: Allstate Insurance (57 fields) from https://www.yellowpages.com/silver-spring-md/mip/joe-van-dalsum-allstate-insurance-23009244?lid=1000752136746
+[INFO] Found new fields: 13b12695-d395-4c0b-b4f4-13543ea442e1Section, result-ratings_additionalSection
+[INFO] Extracted: Kevin Ha - State Farm Insurance Agent (98 fields) from https://www.yellowpages.com/rockville-md/mip/kevin-ha-state-farm-insurance-agent-523766088
+[INFO] Extracted: Family First Lift Insurance - David Mccoy (59 fields) from https://www.yellowpages.com/washington-dc/mip/family-first-lift-insurance-david-mccoy-564669526
+[INFO] Extracted: Employee Benefit Advocates (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/employee-benefit-advocates-467430644
+[INFO] Extracted: Washingtonian Financial Group, LLC (55 fields) from https://www.yellowpages.com/bethesda-md/mip/washingtonian-financial-group-llc-466913698
+[INFO] Extracted: Northwestern Mutual (58 fields) from https://www.yellowpages.com/olney-md/mip/northwestern-mutual-473809161
+[INFO] Found new fields: fe595d2c-c354-47c8-b826-1251ec1116cbSection
+[INFO] Extracted: Allstate Insurance: Leydine Zapata (111 fields) from https://www.yellowpages.com/silver-spring-md/mip/allstate-insurance-leydine-zapata-496678616
+[INFO] Extracted: Nationwide Insurance: R G Insurance (63 fields) from https://www.yellowpages.com/rockville-md/mip/nationwide-insurance-r-g-insurance-560927126
+[INFO] Extracted: Hardman Brian (57 fields) from https://www.yellowpages.com/bethesda-md/mip/hardman-brian-570528737
+[INFO] Extracted: Jordan & Associates (55 fields) from https://www.yellowpages.com/potomac-md/mip/jordan-associates-452526153
+[INFO] Extracted: Farmers Insurance (70 fields) from https://www.yellowpages.com/rockville-md/mip/farmers-insurance-474916010
+[INFO] Extracted: Puente, Reina (57 fields) from https://www.yellowpages.com/rockville-md/mip/puente-reina-469283117
+[INFO] Extracted: Prudential Financial (58 fields) from https://www.yellowpages.com/silver-spring-md/mip/prudential-financial-660652
+[INFO] Extracted: Globe Life American Income Division: AO (62 fields) from https://www.yellowpages.com/washington-dc/mip/globe-life-american-income-division-ao-453722226
+[INFO] Extracted: LIFE INSURANCE AGENT - Shelly Crosse (63 fields) from https://www.yellowpages.com/westlake-md/mip/life-insurance-agent-shelly-crosse-556181112
+[INFO] Extracted: John G Rogers & Associates Inc (70 fields) from https://www.yellowpages.com/bethesda-md/mip/john-g-rogers-associates-inc-498009420
+[INFO] Extracted: Nationwide Insurance: Insurance One Group Inc. (63 fields) from https://www.yellowpages.com/olney-md/mip/nationwide-insurance-insurance-one-group-inc-470894191
+[INFO] Found new fields: websiteLink
+[INFO] Extracted: RG Insurance (58 fields) from https://www.yellowpages.com/rockville-md/mip/rg-insurance-561654905
+[INFO] Extracted: Parks Life Insurance (63 fields) from https://www.yellowpages.com/nationwide/mip/parks-life-insurance-464659338
+[INFO] Extracted: Nationwide Insurance (66 fields) from https://www.yellowpages.com/kensington-md/mip/nationwide-insurance-470894500
+[INFO] Extracted: Wallace, Joyce (58 fields) from https://www.yellowpages.com/silver-spring-md/mip/wallace-joyce-6483981
+[INFO] Extracted: Belinkie, Jon, AGT (66 fields) from https://www.yellowpages.com/rockville-md/mip/belinkie-jon-agt-552010051
+[INFO] Found new fields: status-text_open_nowSection
+[INFO] Extracted: Roxane Acosta - Western & Southern Life (65 fields) from https://www.yellowpages.com/college-park-md/mip/roxane-acosta-western-southern-life-549313602
+[INFO] Extracted: Planning Needs Financial Group (59 fields) from https://www.yellowpages.com/rockville-md/mip/planning-needs-financial-group-474991582
+[INFO] Extracted: Arbed Financial Solutions, LLC (51 fields) from https://www.yellowpages.com/bethesda-md/mip/arbed-financial-solutions-llc-473814039
+[INFO] Extracted: Frank Goldbach Ins Inc. - Nationwide Insurance (65 fields) from https://www.yellowpages.com/bethesda-md/mip/frank-goldbach-ins-inc-nationwide-insurance-505252894
+[INFO] Extracted: Nationwide Insurance: Insurance One Group Inc (66 fields) from https://www.yellowpages.com/olney-md/mip/nationwide-insurance-insurance-one-group-inc-547561915
+[INFO] Found new fields: quoteLink
+[INFO] Extracted: Mutual of Omaha (59 fields) from https://www.yellowpages.com/nationwide/mip/mutual-of-omaha-480975102
+[INFO] Extracted: MassMutual Greater Washington (70 fields) from https://www.yellowpages.com/rockville-md/mip/massmutual-greater-washington-480726072
+[INFO] Extracted: Allstate Insurance: Ron Ziegel (67 fields) from https://www.yellowpages.com/kensington-md/mip/allstate-insurance-ron-ziegel-506646184
+[INFO] Extracted: Prudential Financial (59 fields) from https://www.yellowpages.com/silver-spring-md/mip/prudential-financial-526705977
+[INFO] Found new fields: 9cc33143-8cb4-4d37-946f-e12cc0928033Section
+[INFO] Extracted: Allstate Insurance: Andrew W. Zink (104 fields) from https://www.yellowpages.com/olney-md/mip/allstate-insurance-andrew-w-zink-473421242
+[INFO] Extracted: Prudential Financial (60 fields) from https://www.yellowpages.com/vienna-va/mip/prudential-financial-461863603
+[INFO] Extracted: Farmers Insurance - Christopher Hanes (66 fields) from https://www.yellowpages.com/rockville-md/mip/farmers-insurance-christopher-hanes-508075625
+[INFO] Extracted: C Kim - State Farm Insurance Agent (59 fields) from https://www.yellowpages.com/bethesda-md/mip/c-kim-state-farm-insurance-agent-567001781
+[INFO] Extracted: HealthMarkets Insurance - Alex Hagos (51 fields) from https://www.yellowpages.com/nationwide/mip/healthmarkets-insurance-alex-hagos-578425602
+[INFO] Extracted: Jamie Schad - State Farm Insurance Agent (78 fields) from https://www.yellowpages.com/olney-md/mip/jamie-schad-state-farm-insurance-agent-472988342
+[INFO] Extracted: Terrapin Insurance Group LLC (89 fields) from https://www.yellowpages.com/rockville-md/mip/terrapin-insurance-group-llc-469746137
+[INFO] Extracted: Equity Planning Inc (60 fields) from https://www.yellowpages.com/bethesda-md/mip/equity-planning-inc-452522860
+[INFO] Found new fields: 21d1c00c-7dd1-47ca-8aeb-77c353d80749Section, a892e307-acb7-47cc-8099-01a8a184546eSection, db33c8c2-c701-4d26-bb8f-f8de7d48ead6Section, e2f1e6b5-c5e9-4c1c-971b-09da405454aaSection, b1835591-ff87-4ebe-a56d-b52e171d65cbSection, 1b23fa45-a015-4cd8-b025-e02b5c584992Section, 8a020f4a-84eb-406a-a6cf-8e7a98dfaaceSection, 8c8939db-908e-484a-90c1-f0ad6652d795Section, 75c9a0b5-a17a-4b4c-b5ab-5b6fd0d14f7aSection, 3c2b930f-e202-436b-a356-85bd778dac86Section
+[INFO] Extracted: Premier Financial Alliance (PFA) SEAL Team (183 fields) from https://www.yellowpages.com/rockville-md/mip/premier-financial-alliance-pfa-seal-team-4062744
+[INFO] Found new fields: 11406108-14d5-4cad-95c4-9ea30530ccfaSection
+[INFO] Extracted: Ashley Deadwyler-Jones - State Farm Insurance Agent (99 fields) from https://www.yellowpages.com/silver-spring-md/mip/ashley-deadwyler-jones-state-farm-insurance-agent-497678174
+[INFO] Extracted: Universal Insurance Group (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/universal-insurance-group-547469807
+[INFO] Extracted: Mindy Aguirre - State Farm Insurance Agent (54 fields) from https://www.yellowpages.com/north-bethesda-md/mip/mindy-aguirre-state-farm-insurance-agent-571717545
+[INFO] Extracted: Marcil Lorrie M (60 fields) from https://www.yellowpages.com/washington-dc/mip/marcil-lorrie-m-473110889
+[INFO] Extracted: Wertenteil, Lew, AGT (67 fields) from https://www.yellowpages.com/silver-spring-md/mip/wertenteil-lew-agt-505561240
+[INFO] Extracted: Life Insurance Clinic (58 fields) from https://www.yellowpages.com/nationwide/mip/life-insurance-clinic-475605007
+[INFO] Found new fields: contactLink
+[INFO] Extracted: Allstate Insurance: Paul W. Partington, Sr. (87 fields) from https://www.yellowpages.com/olney-md/mip/allstate-insurance-paul-w-partington-sr-506614896
+[INFO] Extracted: Guardian Disability Insurance Brokerage (61 fields) from https://www.yellowpages.com/rockville-md/mip/guardian-disability-insurance-brokerage-546453547
+[INFO] Extracted: Allstate Insurance: Shane Smallwood (72 fields) from https://www.yellowpages.com/chevy-chase-md/mip/allstate-insurance-shane-smallwood-473545438
+[INFO] Extracted: Trena Perez: Allstate Insurance (73 fields) from https://www.yellowpages.com/rockville-md/mip/trena-perez-allstate-insurance-495819491
+[INFO] Extracted: Leslie Riehl - State Farm Insurance Agent (70 fields) from https://www.yellowpages.com/silver-spring-md/mip/leslie-riehl-state-farm-insurance-agent-470302371
+[INFO] Found new fields: appointmentLink
+[INFO] Extracted: Jeslling Montalvan - State Farm Insurance Agent (71 fields) from https://www.yellowpages.com/rockville-md/mip/jeslling-montalvan-state-farm-insurance-agent-559904000
+[INFO] Extracted: Independent Insurance Agent (76 fields) from https://www.yellowpages.com/washington-dc/mip/independent-insurance-agent-505564014
+[INFO] Extracted: Allstate Life Insurance Specialist: KEN VANVALKENBURGH (67 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-life-insurance-specialist-ken-vanvalkenburgh-578694705
+[INFO] Extracted: HealthMarkets Insurance - Brian Rice (85 fields) from https://www.yellowpages.com/nationwide/mip/healthmarkets-insurance-brian-rice-14496011
+[INFO] Extracted: Heritage Globe (60 fields) from https://www.yellowpages.com/nationwide/mip/heritage-globe-576342422
+[INFO] Extracted: Charles Sumpter - State Farm Insurance Agent (83 fields) from https://www.yellowpages.com/bethesda-md/mip/charles-sumpter-state-farm-insurance-agent-21724356
+[INFO] Extracted: Your Life Insurance Pros.Com LLC (60 fields) from https://www.yellowpages.com/rockville-md/mip/your-life-insurance-pros-com-llc-527132480
+[INFO] Extracted: Bill Carver Jr - State Farm Insurance Agent (70 fields) from https://www.yellowpages.com/takoma-park-md/mip/bill-carver-jr-state-farm-insurance-agent-565882212
+[INFO] Extracted: Freeman, Derrick, AGT (63 fields) from https://www.yellowpages.com/rockville-md/mip/freeman-derrick-agt-576056652
+[INFO] Extracted: Marilyn Riehl - State Farm Insurance Agent (73 fields) from https://www.yellowpages.com/silver-spring-md/mip/marilyn-riehl-state-farm-insurance-agent-481424984
+[INFO] Extracted: Mass Mutual Financial Group (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/mass-mutual-financial-group-480948212
+[INFO] Extracted: Allstate Insurance Agent: Fitzway Insurance, MBIA LLC (70 fields) from https://www.yellowpages.com/rockville-md/mip/allstate-insurance-agent-fitzway-insurance-mbia-llc-540639908
+[INFO] Extracted: Transamerica Occidental Life (62 fields) from https://www.yellowpages.com/beltsville-md/mip/transamerica-occidental-life-475034035
+[INFO] Extracted: HealthMarkets Insurance - Franklyn E Clarke (61 fields) from https://www.yellowpages.com/nationwide/mip/healthmarkets-insurance-franklyn-e-clarke-25327539
+[INFO] Extracted: American General Life Company (61 fields) from https://www.yellowpages.com/rockville-md/mip/american-general-life-company-459156763
+[INFO] Extracted: Allstate Insurance: Glenda Palacios (70 fields) from https://www.yellowpages.com/silver-spring-md/mip/allstate-insurance-glenda-palacios-534077699
+[INFO] Extracted: Rubin Insurance Agency (74 fields) from https://www.yellowpages.com/rockville-md/mip/rubin-insurance-agency-473643692
+[INFO] Extracted: Allstate Insurance: Kevin A. Vendt (83 fields) from https://www.yellowpages.com/bethesda-md/mip/allstate-insurance-kevin-a-vendt-503143881
+[INFO] Extracted: C Clifton Veirs Agency ... (67 fields) from https://www.yellowpages.com/rockville-md/mip/c-clifton-veirs-agency-458039134
+[INFO] Extracted: Pellegrini, Rebecca (62 fields) from https://www.yellowpages.com/rockville-md/mip/pellegrini-rebecca-479438124
+[INFO] Extracted: Michael O'Neill - State Farm Insurance Agent (78 fields) from https://www.yellowpages.com/silver-spring-md/mip/michael-oneill-state-farm-insurance-agent-1094155
+[INFO] Extracted: Kemper Life (60 fields) from https://www.yellowpages.com/silver-spring-md/mip/kemper-life-576067667
+[INFO] Extracted: Prudential Financial (61 fields) from https://www.yellowpages.com/arlington-va/mip/prudential-financial-493153538
+[INFO] Extracted: Williams, Clayton (61 fields) from https://www.yellowpages.com/rockville-md/mip/williams-clayton-479445038
+[INFO] Extracted: REMAX ALL PRO (67 fields) from https://www.yellowpages.com/nationwide/mip/remax-all-pro-479454011
+[INFO] Extracted: Reggie Bridges - State Farm Insurance Agent (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/reggie-bridges-state-farm-insurance-agent-474073439
+[INFO] Extracted: Caton Insurance Agency, Nationwide Insurance (72 fields) from https://www.yellowpages.com/rockville-md/mip/caton-insurance-agency-nationwide-insurance-474069954
+[INFO] Extracted: Donna Taylor - State Farm Insurance Agent (83 fields) from https://www.yellowpages.com/gaithersburg-md/mip/donna-taylor-state-farm-insurance-agent-472987495
+[INFO] Extracted: Allstate Insurance Agent: Azqa Goraya (70 fields) from https://www.yellowpages.com/rockville-md/mip/allstate-insurance-agent-azqa-goraya-547780206
+[INFO] Extracted: Ayele, Hayemanot, AGT (62 fields) from https://www.yellowpages.com/silver-spring-md/mip/ayele-hayemanot-agt-551285289
+[INFO] Extracted: Allstate Insurance: Ken Lee (78 fields) from https://www.yellowpages.com/rockville-md/mip/allstate-insurance-ken-lee-525831680
+[INFO] Extracted: Prudential Financial (61 fields) from https://www.yellowpages.com/washington-dc/mip/prudential-financial-23817444
+[INFO] Extracted: Veirs, Frazier (61 fields) from https://www.yellowpages.com/rockville-md/mip/veirs-frazier-551404636
+[INFO] Extracted: Waepa (74 fields) from https://www.yellowpages.com/falls-church-va/mip/waepa-15291200
+[INFO] Extracted: HealthMarkets Insurance - Lew Wertenteil (57 fields) from https://www.yellowpages.com/nationwide/mip/healthmarkets-insurance-lew-wertenteil-503191311
+[INFO] Extracted: Liberty Mutual Insurance (62 fields) from https://www.yellowpages.com/rockville-md/mip/liberty-mutual-insurance-470764818
+[INFO] Extracted: Allstate Insurance: Sanjay Thomas (74 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-insurance-sanjay-thomas-479988169
+[INFO] Extracted: William Donahue: Allstate Insurance (63 fields) from https://www.yellowpages.com/silver-spring-md/mip/william-donahue-allstate-insurance-567891569
+[INFO] Extracted: Farmers Insurance (74 fields) from https://www.yellowpages.com/rockville-md/mip/farmers-insurance-497770658
+[INFO] Extracted: Tufa, Naol, AGT (63 fields) from https://www.yellowpages.com/silver-spring-md/mip/tufa-naol-agt-571117572
+[INFO] Extracted: Feldman, Howard, AGT (69 fields) from https://www.yellowpages.com/rockville-md/mip/feldman-howard-agt-542933004
+[INFO] Extracted: Capital Trusts Inc. (61 fields) from https://www.yellowpages.com/washington-dc/mip/capital-trusts-inc-473511482
+[INFO] Extracted: Colonial Life & Accident Insurance Co (61 fields) from https://www.yellowpages.com/bethesda-md/mip/colonial-life-accident-insurance-co-472926655
+[INFO] Extracted: HealthMarkets Insurance - Philomena Williams (54 fields) from https://www.yellowpages.com/nationwide/mip/healthmarkets-insurance-philomena-williams-549724299
+[INFO] Extracted: Mutual of Omaha (61 fields) from https://www.yellowpages.com/arlington-va/mip/mutual-of-omaha-560307886
+[INFO] Extracted: Mueller, Kevin, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/mueller-kevin-agt-569323746
+[INFO] Extracted: First Financial Group (66 fields) from https://www.yellowpages.com/bethesda-md/mip/first-financial-group-15774267
+[INFO] Extracted: Nationwide Insurance: HUB International Midwest Limited (60 fields) from https://www.yellowpages.com/silver-spring-md/mip/nationwide-insurance-hub-international-midwest-limited-557636952
+[INFO] Extracted: Nationwide Insurance: Insurance Networks Corporation (78 fields) from https://www.yellowpages.com/rockville-md/mip/nationwide-insurance-insurance-networks-corporation-560597039
+[INFO] Extracted: Farmers Insurance (63 fields) from https://www.yellowpages.com/silver-spring-md/mip/farmers-insurance-550590902
+[INFO] Extracted: Paul D Markuski (69 fields) from https://www.yellowpages.com/rockville-md/mip/paul-d-markuski-531793123
+[INFO] Extracted: Laker-Beacon Group, LLC (62 fields) from https://www.yellowpages.com/mc-lean-va/mip/laker-beacon-group-llc-495832644
+[INFO] Extracted: HealthMarkets Insurance - Ivan Nalibotsky (54 fields) from https://www.yellowpages.com/nationwide/mip/healthmarkets-insurance-ivan-nalibotsky-564757661
+[INFO] Extracted: Bridgeport Benefit Advisors (65 fields) from https://www.yellowpages.com/bethesda-md/mip/bridgeport-benefit-advisors-456591741
+[INFO] Extracted: Werber, Scott (61 fields) from https://www.yellowpages.com/beltsville-md/mip/werber-scott-479402674
+[INFO] Extracted: Zepeda, Rosie, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/zepeda-rosie-agt-569324153
+[INFO] Extracted: Jerry Barkdoll - State Farm Insurance Agent (77 fields) from https://www.yellowpages.com/silver-spring-md/mip/jerry-barkdoll-state-farm-insurance-agent-569722025
+[INFO] Extracted: FSC Securities Corp (63 fields) from https://www.yellowpages.com/rockville-md/mip/fsc-securities-corp-10160238
+[INFO] Extracted: American Preferred Insurance Center Inc (93 fields) from https://www.yellowpages.com/silver-spring-md/mip/american-preferred-insurance-center-inc-480185570
+[INFO] Extracted: First Insurance (83 fields) from https://www.yellowpages.com/silver-spring-md/mip/first-insurance-1373450
+[INFO] Extracted: Glista, Robert S, AGT (69 fields) from https://www.yellowpages.com/rockville-md/mip/glista-robert-s-agt-542710953
+[INFO] Extracted: Life Insurance Agent (62 fields) from https://www.yellowpages.com/montgomery-village-md/mip/life-insurance-agent-548617525
+[INFO] Extracted: James Hannah-JSH Insurance (56 fields) from https://www.yellowpages.com/nationwide/mip/james-hannah-jsh-insurance-575613289
+[INFO] Extracted: Diehl, Darrell (61 fields) from https://www.yellowpages.com/beltsville-md/mip/diehl-darrell-479462072
+[INFO] Extracted: Adenikinju, Omolara (61 fields) from https://www.yellowpages.com/rockville-md/mip/adenikinju-omolara-469169535
+[INFO] Extracted: Byrne, Raymond, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/byrne-raymond-agt-569330649
+[INFO] Extracted: Green, Randall (63 fields) from https://www.yellowpages.com/rockville-md/mip/green-randall-1187913
+[INFO] Extracted: Farmers Insurance - Mohamed Kamil (66 fields) from https://www.yellowpages.com/bethesda-md/mip/farmers-insurance-mohamed-kamil-570887711
+[INFO] Extracted: Farmers Insurance (69 fields) from https://www.yellowpages.com/silver-spring-md/mip/farmers-insurance-497761950
+[INFO] Extracted: Patton Insurance Brokerage Inc (80 fields) from https://www.yellowpages.com/rockville-md/mip/patton-insurance-brokerage-inc-571855870
+[INFO] Extracted: Sharma, Homa, AGT (75 fields) from https://www.yellowpages.com/silver-spring-md/mip/sharma-homa-agt-576298999
+[INFO] Extracted: Boone, Rochelle (61 fields) from https://www.yellowpages.com/takoma-park-md/mip/boone-rochelle-469141088
+[INFO] Extracted: Tim Navarro - State Farm Insurance Agent (76 fields) from https://www.yellowpages.com/kensington-md/mip/tim-navarro-state-farm-insurance-agent-2403889?lid=1000157510740
+[INFO] Extracted: National Brokerage Associates Inc (61 fields) from https://www.yellowpages.com/rockville-md/mip/national-brokerage-associates-inc-542144159
+[INFO] Extracted: American Council of Life Insurers (62 fields) from https://www.yellowpages.com/washington-dc/mip/american-council-of-life-insurers-452427447
+[INFO] Extracted: Yates, Matthew, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/yates-matthew-agt-569333218
+[INFO] Extracted: Farmers Insurance - Jason Rubin (74 fields) from https://www.yellowpages.com/rockville-md/mip/farmers-insurance-jason-rubin-541997702
+[INFO] Extracted: Salma Yousufzai - State Farm Insurance Agent (83 fields) from https://www.yellowpages.com/potomac-md/mip/salma-yousufzai-state-farm-insurance-agent-474072468
+[INFO] Extracted: Gomez Insurance Co (63 fields) from https://www.yellowpages.com/silver-spring-md/mip/gomez-insurance-co-558169680
+[INFO] Extracted: Insurance Rockville MD (65 fields) from https://www.yellowpages.com/rockville-md/mip/insurance-rockville-md-456505297
+[INFO] Extracted: Bankers Life & Casualty Company (62 fields) from https://www.yellowpages.com/gaithersburg-md/mip/bankers-life-casualty-company-496989782
+[INFO] Extracted: Huckabay, Victoria, AGT (63 fields) from https://www.yellowpages.com/rockville-md/mip/huckabay-victoria-agt-559484352
+[INFO] Extracted: Farmers Insurance - Rhonda Kaufman (74 fields) from https://www.yellowpages.com/silver-spring-md/mip/farmers-insurance-rhonda-kaufman-550202967
+[INFO] Extracted: Rhonda L. Hamilton, Insurance Consultant (61 fields) from https://www.yellowpages.com/washington-dc/mip/rhonda-l-hamilton-insurance-consultant-528087284
+[INFO] Extracted: Banker's Life & Casualty (61 fields) from https://www.yellowpages.com/rockville-md/mip/bankers-life-casualty-497167881
+[INFO] Extracted: Williams, Magda, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/williams-magda-agt-569344322
+[INFO] Extracted: Pillar Insurance Group (62 fields) from https://www.yellowpages.com/potomac-md/mip/pillar-insurance-group-10182194
+[INFO] Found new fields: 27ef6c56-4511-11dd-90eb-001b782fb5dc-631Section
+[INFO] Extracted: Frank Goldbach Ins. Assoc. Inc (94 fields) from https://www.yellowpages.com/silver-spring-md/mip/frank-goldbach-ins-assoc-inc-481942154
+[INFO] Extracted: Nationwide Insurance (71 fields) from https://www.yellowpages.com/gaithersburg-md/mip/nationwide-insurance-470195313
+[INFO] Extracted: Bowerman Insurance and Financial inc (69 fields) from https://www.yellowpages.com/rockville-md/mip/bowerman-insurance-and-financial-inc-497371577
+[INFO] Extracted: United Insurance & Investments (62 fields) from https://www.yellowpages.com/rockville-md/mip/united-insurance-investments-545075275
+[INFO] Extracted: Kaufman, Rhonda, AGT (70 fields) from https://www.yellowpages.com/silver-spring-md/mip/kaufman-rhonda-agt-553707162
+[INFO] Extracted: Kevon Washington, Bankers Life Agent (78 fields) from https://www.yellowpages.com/gaithersburg-md/mip/kevon-washington-bankers-life-agent-576125934
+[INFO] Extracted: Uslc Mba (68 fields) from https://www.yellowpages.com/washington-dc/mip/uslc-mba-23659402
+[INFO] Extracted: Patel, Nish, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/patel-nish-agt-569353127
+[INFO] Extracted: Hart, Zachary, AGT (61 fields) from https://www.yellowpages.com/chevy-chase-md/mip/hart-zachary-agt-504069728
+[INFO] Found new fields: amenitiesSection, amenities-infoSection
+[INFO] Extracted: Joe Corgan - State Farm Insurance Agent (78 fields) from https://www.yellowpages.com/cabin-john-md/mip/joe-corgan-state-farm-insurance-agent-472993155
+[INFO] Extracted: General Insurance Group, Inc. (87 fields) from https://www.yellowpages.com/gaithersburg-md/mip/general-insurance-group-inc-462907131
+[INFO] Extracted: TWFG Insurance Service (62 fields) from https://www.yellowpages.com/kensington-md/mip/twfg-insurance-service-468716798
+[INFO] Extracted: Heber Insurance (63 fields) from https://www.yellowpages.com/rockville-md/mip/heber-insurance-551984417
+[INFO] Extracted: Nationwide Insurance Stephen L Beall Cic (69 fields) from https://www.yellowpages.com/rockville-md/mip/nationwide-insurance-stephen-l-beall-cic-462782260
+[INFO] Extracted: Holtzman, Jeff - The Holtzman Group (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/holtzman-jeff-the-holtzman-group-21690354
+[INFO] Extracted: Marts, Curt, AGT (62 fields) from https://www.yellowpages.com/gaithersburg-md/mip/marts-curt-agt-578135354
+[INFO] Extracted: Navy Mutual Aid Association (77 fields) from https://www.yellowpages.com/arlington-va/mip/navy-mutual-aid-association-452966860
+[INFO] Extracted: Rossiter, William, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/rossiter-william-agt-569358475
+[INFO] Extracted: Victor Insurance (62 fields) from https://www.yellowpages.com/bethesda-md/mip/victor-insurance-556647291
+[INFO] Extracted: Corgan, Joe, AGT (68 fields) from https://www.yellowpages.com/cabin-john-md/mip/corgan-joe-agt-513754810
+[INFO] Extracted: Renee Oliver Insurance Agency Inc (80 fields) from https://www.yellowpages.com/silver-spring-md/mip/renee-oliver-insurance-agency-inc-11429839
+[INFO] Extracted: Allstate Insurance: Fidencio Gonzalez (70 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-insurance-fidencio-gonzalez-468517230
+[INFO] Extracted: Progressive Insurance (63 fields) from https://www.yellowpages.com/rockville-md/mip/progressive-insurance-526435626
+[INFO] Extracted: Reggie Bridges - State Farm Insurance Agent (85 fields) from https://www.yellowpages.com/rockville-md/mip/reggie-bridges-state-farm-insurance-agent-502987374
+[INFO] Extracted: Northern, Thomas, AGT (62 fields) from https://www.yellowpages.com/derwood-md/mip/northern-thomas-agt-559514981
+[INFO] Extracted: Dawn Le, Principal - In2-Solutions Group (66 fields) from https://www.yellowpages.com/washington-dc/mip/dawn-le-principal-in2-solutions-group-578269261
+[INFO] Extracted: Innovative Benefit Solutions (61 fields) from https://www.yellowpages.com/reston-va/mip/innovative-benefit-solutions-531447952
+[INFO] Extracted: Nolivos, Jose, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/nolivos-jose-agt-571118451
+[INFO] Extracted: Flanigan III, William (61 fields) from https://www.yellowpages.com/bethesda-md/mip/flanigan-iii-william-543857674
+[INFO] Extracted: Michael Cabrera - State Farm Insurance Agent (80 fields) from https://www.yellowpages.com/silver-spring-md/mip/michael-cabrera-state-farm-insurance-agent-480167461
+[INFO] Extracted: Deadwyler-Jones, Ashley, AGT (70 fields) from https://www.yellowpages.com/silver-spring-md/mip/deadwyler-jones-ashley-agt-479523122
+[INFO] Extracted: HealthMarkets Insurance-Philomena Williams (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/healthmarkets-insurance-philomena-williams-511565514
+[INFO] Extracted: Nationwide Insurance: Donald N McCulloh (60 fields) from https://www.yellowpages.com/rockville-md/mip/nationwide-insurance-donald-n-mcculloh-534034558
+[INFO] Extracted: Cortes, Jessica, AGT (69 fields) from https://www.yellowpages.com/rockville-md/mip/cortes-jessica-agt-542664734
+[INFO] Extracted: Mutual of Omaha® Advisors - Beltsville (66 fields) from https://www.yellowpages.com/beltsville-md/mip/mutual-of-omaha-advisors-beltsville-556047370
+[INFO] Extracted: Henry A Latimer & Son, Inc. (91 fields) from https://www.yellowpages.com/bethesda-md/mip/henry-a-latimer-son-inc-503958861
+[INFO] Extracted: Advanced Planning and Benefits Consulting (62 fields) from https://www.yellowpages.com/laurel-md/mip/advanced-planning-and-benefits-consulting-578165779
+[INFO] Extracted: Burchman, Jeffrey, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/burchman-jeffrey-agt-571176477
+[INFO] Extracted: Lopez, Luis (61 fields) from https://www.yellowpages.com/bethesda-md/mip/lopez-luis-504208663
+[INFO] Extracted: Bill Bridges III - State Farm Insurance Agent (83 fields) from https://www.yellowpages.com/silver-spring-md/mip/bill-bridges-iii-state-farm-insurance-agent-16410384
+[INFO] Extracted: Nicole June - State Farm Insurance Agent (72 fields) from https://www.yellowpages.com/bethesda-md/mip/nicole-june-state-farm-insurance-agent-460523566
+[INFO] Extracted: Northwestern Mutual (61 fields) from https://www.yellowpages.com/washington-dc/mip/northwestern-mutual-475959549
+[INFO] Extracted: McCulloh, Donald N, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/mcculloh-donald-n-agt-574785566
+[INFO] Extracted: Victor Jones - State Farm Insurance Agent (93 fields) from https://www.yellowpages.com/rockville-md/mip/victor-jones-state-farm-insurance-agent-541686547
+[INFO] Extracted: American Income Life Insurance Co (61 fields) from https://www.yellowpages.com/beltsville-md/mip/american-income-life-insurance-co-497630410
+[INFO] Extracted: Nina Jeong - State Farm Insurance Agent (78 fields) from https://www.yellowpages.com/silver-spring-md/mip/nina-jeong-state-farm-insurance-agent-1697584
+[INFO] Extracted: ACA Julieta Watlington (65 fields) from https://www.yellowpages.com/annandale-va/mip/aca-julieta-watlington-17926521
+[INFO] Extracted: Ramirez, Rosie, AGT (62 fields) from https://www.yellowpages.com/rockville-md/mip/ramirez-rosie-agt-574454091
+[INFO] Extracted: Preferred Benefit Services (62 fields) from https://www.yellowpages.com/silver-spring-md/mip/preferred-benefit-services-3019331
+[INFO] Extracted: Bridges III, Bill, AGT (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/bridges-iii-bill-agt-537358979
+[INFO] Extracted: Dave Bonnell - State Farm Insurance Agent (63 fields) from https://www.yellowpages.com/gaithersburg-md/mip/dave-bonnell-state-farm-insurance-agent-474073968
+[INFO] Extracted: Capital Benefits Corporation (89 fields) from https://www.yellowpages.com/washington-dc/mip/capital-benefits-corporation-458067725
+[INFO] Extracted: Gallers Financial Group (62 fields) from https://www.yellowpages.com/rockville-md/mip/gallers-financial-group-497854342
+[INFO] Extracted: Leon Insurance (67 fields) from https://www.yellowpages.com/rockville-md/mip/leon-insurance-550514757
+[INFO] Extracted: Mutual of Omaha (61 fields) from https://www.yellowpages.com/arlington-va/mip/mutual-of-omaha-560797279
+[INFO] Extracted: Jeong, Nina, AGT (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/jeong-nina-agt-542557494
+[INFO] Found new fields: orderOnlineLink
+[INFO] Extracted: Protecting The Next Generation, LLC (65 fields) from https://www.yellowpages.com/laurel-md/mip/protecting-the-next-generation-llc-523751279
+[INFO] Extracted: Comparion Insurance Agency (89 fields) from https://www.yellowpages.com/rockville-md/mip/comparion-insurance-agency-578623451
+[INFO] Extracted: FemFal Insurance and Realty Solutions (64 fields) from https://www.yellowpages.com/silver-spring-md/mip/femfal-insurance-and-realty-solutions-571911022
+[INFO] Extracted: Farmers Insurance - Jamshaid Cheema (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/farmers-insurance-jamshaid-cheema-566741333
+[INFO] Extracted: Niko Di Giulio - State Farm Insurance Agent (70 fields) from https://www.yellowpages.com/olney-md/mip/niko-di-giulio-state-farm-insurance-agent-548386453
+[INFO] Extracted: Keith Edwards - State Farm Insurance Agent (81 fields) from https://www.yellowpages.com/washington-dc/mip/keith-edwards-state-farm-insurance-agent-548434732
+[INFO] Extracted: R & G Insurance Associates (62 fields) from https://www.yellowpages.com/rockville-md/mip/r-g-insurance-associates-547469870
+[INFO] Found new fields: c37f7cd0-a612-0130-0f9d-001e0be96754Section
+[INFO] Extracted: Chris Aguirre - State Farm Insurance Agent (91 fields) from https://www.yellowpages.com/kensington-md/mip/chris-aguirre-state-farm-insurance-agent-474066376
+[INFO] Extracted: Chuks Insurance Inc (63 fields) from https://www.yellowpages.com/washington-dc/mip/chuks-insurance-inc-549664459?lid=1002116246645
+[INFO] Extracted: Moore Solutions (62 fields) from https://www.yellowpages.com/washington-dc/mip/moore-solutions-507499267
+[INFO] Extracted: Allstate Insurance: John A. McClelland (74 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-insurance-john-a-mcclelland-467097080
+[INFO] Extracted: Palencia, Suzanne, AGT (63 fields) from https://www.yellowpages.com/rockville-md/mip/palencia-suzanne-agt-576289880
+[INFO] Extracted: Farmers Insurance (69 fields) from https://www.yellowpages.com/silver-spring-md/mip/farmers-insurance-547559254
+[INFO] Extracted: Employee Benefit Advocates (66 fields) from https://www.yellowpages.com/silver-spring-md/mip/employee-benefit-advocates-467430644
+[INFO] Extracted: Nationwide Insurance (70 fields) from https://www.yellowpages.com/washington-dc/mip/nationwide-insurance-496656163
+[INFO] Extracted: Stewart Enterprises Inc (62 fields) from https://www.yellowpages.com/rockville-md/mip/stewart-enterprises-inc-460075904
+[INFO] Extracted: Carey Fisher - State Farm Insurance Agent (80 fields) from https://www.yellowpages.com/chevy-chase-md/mip/carey-fisher-state-farm-insurance-agent-472657113
+[INFO] Extracted: Munson, David, AGT (91 fields) from https://www.yellowpages.com/potomac-md/mip/munson-david-agt-577222659
+[INFO] Extracted: Free Final Expense Quote. Com (62 fields) from https://www.yellowpages.com/burtonsville-md/mip/free-final-expense-quote-com-507501217
+[INFO] Extracted: Family First Life Opulence Insurance (62 fields) from https://www.yellowpages.com/laurel-md/mip/family-first-life-opulence-insurance-563178737
+[INFO] Extracted: Mensah, Ray, AGT (75 fields) from https://www.yellowpages.com/silver-spring-md/mip/mensah-ray-agt-542742602
+[INFO] Extracted: Hernandez, Edith, AGT (63 fields) from https://www.yellowpages.com/rockville-md/mip/hernandez-edith-agt-578342541
+[INFO] Extracted: Allstate Insurance: Gregory Owens (76 fields) from https://www.yellowpages.com/silver-spring-md/mip/allstate-insurance-gregory-owens-495588720
+[INFO] Extracted: Wallace, Joyce (62 fields) from https://www.yellowpages.com/silver-spring-md/mip/wallace-joyce-6483981
+[INFO] Extracted: Ntuk, Sonia, AGT (63 fields) from https://www.yellowpages.com/washington-dc/mip/ntuk-sonia-agt-542829084
+[INFO] Found new fields: listing-locationSection
+[INFO] Extracted: Debra J. Brent (Agent) - US Health Advisors (61 fields) from https://www.yellowpages.com/rockville-md/mip/debra-j-brent-agent-us-health-advisors-503178882
+[INFO] Extracted: Coughlan Insurance Agency Inc (89 fields) from https://www.yellowpages.com/silver-spring-md/mip/coughlan-insurance-agency-inc-9514475
+[INFO] Extracted: Nationwide Insurance: Won K. Kim Insurance Agency, Inc. (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/nationwide-insurance-won-k-kim-insurance-agency-inc-458807423
+[INFO] Extracted: Seneca Group (62 fields) from https://www.yellowpages.com/germantown-md/mip/seneca-group-538409491
+[INFO] Extracted: Globe Life American Income Division: Olusegun Organization (71 fields) from https://www.yellowpages.com/glenarden-md/mip/globe-life-american-income-division-olusegun-organization-571470532
+[INFO] Extracted: Ray Mensah - State Farm Insurance Agent (89 fields) from https://www.yellowpages.com/silver-spring-md/mip/ray-mensah-state-farm-insurance-agent-502822750
+[INFO] Extracted: Allstate Insurance: Barbara Dean (74 fields) from https://www.yellowpages.com/rockville-md/mip/allstate-insurance-barbara-dean-527553423
+[INFO] Extracted: James Mensah - State Farm Insurance Agent (75 fields) from https://www.yellowpages.com/silver-spring-md/mip/james-mensah-state-farm-insurance-agent-554799166
+[INFO] Extracted: Universal Insurance Group (71 fields) from https://www.yellowpages.com/silver-spring-md/mip/universal-insurance-group-547469807
+[INFO] Extracted: Allstate Insurance: J. Reed Laughlin (86 fields) from https://www.yellowpages.com/washington-dc/mip/allstate-insurance-j-reed-laughlin-495660750
+[INFO] Extracted: Claudia Morales: Allstate Insurance (83 fields) from https://www.yellowpages.com/silver-spring-md/mip/claudia-morales-allstate-insurance-561815044
+[INFO] Extracted: American General Life Company (62 fields) from https://www.yellowpages.com/bethesda-md/mip/american-general-life-company-533586188
+[INFO] Extracted: Tamara Haskins, Financial Services Professional - New York Life (67 fields) from https://www.yellowpages.com/clarksburg-md/mip/tamara-haskins-financial-services-professional-new-york-life-576599609
+[INFO] Extracted: Jeslling Montalvan - State Farm Insurance Agent (94 fields) from https://www.yellowpages.com/silver-spring-md/mip/jeslling-montalvan-state-farm-insurance-agent-483860574
+[INFO] Extracted: B&M Insurance Group (68 fields) from https://www.yellowpages.com/lanham-md/mip/b-m-insurance-group-541753094
+[INFO] Extracted: Charles Baum - State Farm Insurance Agent (84 fields) from https://www.yellowpages.com/silver-spring-md/mip/charles-baum-state-farm-insurance-agent-474067536
+[INFO] Extracted: Peter Webb - State Farm Insurance Agent (84 fields) from https://www.yellowpages.com/rockville-md/mip/peter-webb-state-farm-insurance-agent-472984795
+[INFO] Extracted: Armando Punsalan - State Farm Insurance Agent (78 fields) from https://www.yellowpages.com/silver-spring-md/mip/armando-punsalan-state-farm-insurance-agent-483859988
+[INFO] Extracted: Allstate Life Insurance Specialist: KEN VANVALKENBURGH (68 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-life-insurance-specialist-ken-vanvalkenburgh-578694705
+[INFO] Extracted: Carmen Moya - State Farm Insurance Agent (75 fields) from https://www.yellowpages.com/silver-spring-md/mip/carmen-moya-state-farm-insurance-agent-554799137
+[INFO] Extracted: Dimetrius Hatcher - State Farm Insurance Agent (74 fields) from https://www.yellowpages.com/washington-dc/mip/dimetrius-hatcher-state-farm-insurance-agent-527117436
+[INFO] Extracted: Guzman Insurance Services, LLC (65 fields) from https://www.yellowpages.com/silver-spring-md/mip/guzman-insurance-services-llc-472008350
+[INFO] Extracted: Crump (62 fields) from https://www.yellowpages.com/bethesda-md/mip/crump-456666953
+[INFO] Extracted: Quade Jr, Matthew (62 fields) from https://www.yellowpages.com/washington-dc/mip/quade-jr-matthew-544805213
+[INFO] Extracted: Thapa, Saroj, AGT (63 fields) from https://www.yellowpages.com/rockville-md/mip/thapa-saroj-agt-559906037
+[INFO] Extracted: Niko Di Giulio - State Farm Insurance Agent (79 fields) from https://www.yellowpages.com/olney-md/mip/niko-di-giulio-state-farm-insurance-agent-472986454
+[INFO] Extracted: Daniel C. DiCocco: Allstate Insurance (97 fields) from https://www.yellowpages.com/rockville-md/mip/daniel-c-dicocco-allstate-insurance-546196291
+[INFO] Extracted: Mass Mutual Financial Group (62 fields) from https://www.yellowpages.com/silver-spring-md/mip/mass-mutual-financial-group-480948212
+[INFO] Extracted: Nationwide Insurance (70 fields) from https://www.yellowpages.com/silver-spring-md/mip/nationwide-insurance-550170181
+[INFO] Extracted: Bud Ruland - State Farm Insurance Agent (81 fields) from https://www.yellowpages.com/olney-md/mip/bud-ruland-state-farm-insurance-agent-557821114
+[INFO] Extracted: Alston & Associates (70 fields) from https://www.yellowpages.com/washington-dc/mip/alston-associates-453726047
+[INFO] Extracted: Latessa, E (62 fields) from https://www.yellowpages.com/bethesda-md/mip/latessa-e-469308939
+[INFO] Extracted: Police Management Association (62 fields) from https://www.yellowpages.com/washington-dc/mip/police-management-association-503597569
+[INFO] Extracted: Leon Insurance (63 fields) from https://www.yellowpages.com/potomac-md/mip/leon-insurance-575915073
+[INFO] Extracted: Guardian Whole Life Insurance (62 fields) from https://www.yellowpages.com/rockville-md/mip/guardian-whole-life-insurance-468542467
+[INFO] Extracted: C & C Multiservices (82 fields) from https://www.yellowpages.com/gaithersburg-md/mip/c-c-multiservices-544938124
+[INFO] Extracted: Dicocco, Daniel, AGT (70 fields) from https://www.yellowpages.com/rockville-md/mip/dicocco-daniel-agt-571161856
+[INFO] Extracted: Moya, Carmen, AGT (76 fields) from https://www.yellowpages.com/silver-spring-md/mip/moya-carmen-agt-569817082
+[INFO] Extracted: Kemper Life (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/kemper-life-576067667
+[INFO] Extracted: EKA Financials (66 fields) from https://www.yellowpages.com/wheaton-md/mip/eka-financials-451787535
+[INFO] Extracted: Tom Troyano – State Farm Insurance Agent (71 fields) from https://www.yellowpages.com/washington-dc/mip/tom-troyano-state-farm-insurance-agent-575291349
+[INFO] Extracted: Mauricio Gaitan Founder-CEO-Gaitan Strategic Group (73 fields) from https://www.yellowpages.com/bethesda-md/mip/mauricio-gaitan-founder-ceo-gaitan-strategic-group-576855996
+[INFO] Extracted: World Financial Group (60 fields) from https://www.yellowpages.com/bethesda-md/mip/world-financial-group-483812214
+[INFO] Extracted: 703 Insured (63 fields) from https://www.yellowpages.com/vienna-va/mip/703-insured-526456401
+[INFO] Extracted: Mitchell Katz, Partner - Capital Associates Wealth Management (67 fields) from https://www.yellowpages.com/bethesda-md/mip/mitchell-katz-partner-capital-associates-wealth-management-481964015
+[INFO] Extracted: Christian Durand - State Farm Insurance Agent (93 fields) from https://www.yellowpages.com/gaithersburg-md/mip/christian-durand-state-farm-insurance-agent-497687301
+[INFO] Extracted: Allstate Insurance Agent (76 fields) from https://www.yellowpages.com/rockville-md/mip/allstate-insurance-agent-575944087
+[INFO] Extracted: Richard Frick - State Farm Insurance Agent (89 fields) from https://www.yellowpages.com/washington-dc/mip/richard-frick-state-farm-insurance-agent-472989511
+[INFO] Extracted: Capital Trusts Inc. (62 fields) from https://www.yellowpages.com/washington-dc/mip/capital-trusts-inc-473511482
+[INFO] Extracted: Mixon, Dawn, AGT (63 fields) from https://www.yellowpages.com/bethesda-md/mip/mixon-dawn-agt-569346515
+[INFO] Extracted: Jon Laskin - State Farm Insurance Agent (79 fields) from https://www.yellowpages.com/washington-dc/mip/jon-laskin-state-farm-insurance-agent-474071911
+[INFO] Extracted: Matthew Pisera, Founder, Financial Adviser - Aether Financial Group (67 fields) from https://www.yellowpages.com/bethesda-md/mip/matthew-pisera-founder-financial-adviser-aether-financial-group-577762894
+[INFO] Extracted: Bud Ruland - State Farm Insurance Agent (73 fields) from https://www.yellowpages.com/kensington-md/mip/bud-ruland-state-farm-insurance-agent-503130288
+[INFO] Extracted: Massachusetts Mutual Life Insurance (62 fields) from https://www.yellowpages.com/vienna-va/mip/massachusetts-mutual-life-insurance-453118659
+[INFO] Extracted: Nationwide Insurance: Young Insurance Inc. (73 fields) from https://www.yellowpages.com/bethesda-md/mip/nationwide-insurance-young-insurance-inc-547562216
+[INFO] Extracted: Durand, Christian, AGT (71 fields) from https://www.yellowpages.com/gaithersburg-md/mip/durand-christian-agt-577672990
+[INFO] Extracted: Nationwide Insurance (81 fields) from https://www.yellowpages.com/rockville-md/mip/nationwide-insurance-473634857
+[INFO] Extracted: Paul Cofer - State Farm Insurance Agent (73 fields) from https://www.yellowpages.com/washington-dc/mip/paul-cofer-state-farm-insurance-agent-21754331
+[INFO] Extracted: Ensurise Howard & Hoffman (63 fields) from https://www.yellowpages.com/washington-dc/mip/ensurise-howard-hoffman-571535073
+[INFO] Extracted: Laker-Beacon Group, LLC (63 fields) from https://www.yellowpages.com/mc-lean-va/mip/laker-beacon-group-llc-495832644
+[INFO] Progress saved: 300 businesses processed
+[INFO] Scraping pages: 11, 12
+[INFO] Page 11: Found 30 YP links
+[INFO] Page 12: Found 30 YP links
+[INFO] Extracted: Allstate Insurance: Jorge Hernandez (92 fields) from https://www.yellowpages.com/mc-lean-va/mip/allstate-insurance-jorge-hernandez-497805193
+[INFO] Extracted: Pillar Insurance Group, LLC (68 fields) from https://www.yellowpages.com/ashton-md/mip/pillar-insurance-group-llc-550805302
+[INFO] Extracted: Eagle insurance group llc (60 fields) from https://www.yellowpages.com/mclean-va/mip/eagle-insurance-group-llc-480216637
+[INFO] Extracted: Allstate Insurance: Fitzway Insurance, MBIA LLC (87 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-insurance-fitzway-insurance-mbia-llc-531667791
+[INFO] Extracted: Kinneman Insurance (70 fields) from https://www.yellowpages.com/mc-lean-va/mip/kinneman-insurance-457322602
+[INFO] Extracted: United Nation Ins (68 fields) from https://www.yellowpages.com/silver-spring-md/mip/united-nation-ins-524380385
+[INFO] Extracted: Nationwide Mutual Insurance Companies (69 fields) from https://www.yellowpages.com/mc-lean-va/mip/nationwide-mutual-insurance-companies-470701696
+[INFO] Extracted: Jane Warfield Daza - State Farm Insurance Agent (94 fields) from https://www.yellowpages.com/montgomery-village-md/mip/jane-warfield-daza-state-farm-insurance-agent-462858609
+[INFO] Extracted: Lynn Heinrichs - State Farm Insurance Agent (78 fields) from https://www.yellowpages.com/mc-lean-va/mip/lynn-heinrichs-state-farm-insurance-agent-21751731
+[INFO] Extracted: Mike Warfield - State Farm Insurance Agent (90 fields) from https://www.yellowpages.com/montgomery-village-md/mip/mike-warfield-state-farm-insurance-agent-503220119
+[INFO] Extracted: Sonia Ntuk - State Farm Insurance Agent (84 fields) from https://www.yellowpages.com/washington-dc/mip/sonia-ntuk-state-farm-insurance-agent-474071112
+[INFO] Extracted: Warfield, Mike, AGT (66 fields) from https://www.yellowpages.com/gaithersburg-md/mip/warfield-mike-agt-469785991
+[INFO] Extracted: PJ Hemnani - State Farm Insurance Agent (86 fields) from https://www.yellowpages.com/washington-dc/mip/pj-hemnani-state-farm-insurance-agent-21756120
+[INFO] Extracted: Warfield Daza, Jane, AGT (70 fields) from https://www.yellowpages.com/montgomery-village-md/mip/warfield-daza-jane-agt-545385522
+[INFO] Found new fields: 3d5b18b0-078f-0131-656a-00237da19532Section
+[INFO] Extracted: Allstate Insurance: David Hean (111 fields) from https://www.yellowpages.com/silver-spring-md/mip/allstate-insurance-david-hean-21759350
+[INFO] Extracted: Farmers Insurance (76 fields) from https://www.yellowpages.com/silver-spring-md/mip/farmers-insurance-480663867
+[INFO] Extracted: Derek Kaplan: Allstate Insurance (70 fields) from https://www.yellowpages.com/germantown-md/mip/derek-kaplan-allstate-insurance-517135678
+[INFO] Extracted: Tom Rauner - State Farm Insurance Agent (90 fields) from https://www.yellowpages.com/gaithersburg-md/mip/tom-rauner-state-farm-insurance-agent-472988641
+[INFO] Extracted: Primerica (69 fields) from https://www.yellowpages.com/gaithersburg-md/mip/primerica-460380292
+[INFO] Extracted: Allstate Insurance Agent: Larry Akinde (63 fields) from https://www.yellowpages.com/germantown-md/mip/allstate-insurance-agent-larry-akinde-568079935
+[INFO] Extracted: Nationwide Insurance: Payne Insurance Agency Inc. (79 fields) from https://www.yellowpages.com/gaithersburg-md/mip/nationwide-insurance-payne-insurance-agency-inc-3476998
+[INFO] Extracted: Allstate Insurance: Randy McPhillips (75 fields) from https://www.yellowpages.com/gaithersburg-md/mip/allstate-insurance-randy-mcphillips-506633125
+[INFO] Extracted: Saleh, Jordan, AGT (62 fields) from https://www.yellowpages.com/gaithersburg-md/mip/saleh-jordan-agt-569322852
+[INFO] Found new fields: 21f448e0-4f86-4c8d-9683-f60a3f6f81a5Section
+[INFO] Extracted: Community Insurance Tag & Title Service (82 fields) from https://www.yellowpages.com/hyattsville-md/mip/community-insurance-tag-title-service-10322766
+[INFO] Extracted: Allstate Insurance: Mohammad Y Bajwa (71 fields) from https://www.yellowpages.com/washington-dc/mip/allstate-insurance-mohammad-y-bajwa-531543610
+[INFO] Extracted: David Haines: Allstate Insurance (63 fields) from https://www.yellowpages.com/sandy-spring-md/mip/david-haines-allstate-insurance-570468804
+[INFO] Extracted: Ana Rivas - State Farm Insurance Agent (90 fields) from https://www.yellowpages.com/hyattsville-md/mip/ana-rivas-state-farm-insurance-agent-536918108
+[INFO] Extracted: Adam Harriger - State Farm Insurance Agent (70 fields) from https://www.yellowpages.com/gaithersburg-md/mip/adam-harriger-state-farm-insurance-agent-505352988
+[INFO] Extracted: Yasmin Insurance (64 fields) from https://www.yellowpages.com/takoma-park-md/mip/yasmin-insurance-480171421
+[INFO] Extracted: Fomukongs Insurance Group (62 fields) from https://www.yellowpages.com/hyattsville-md/mip/fomukongs-insurance-group-12023266
+[INFO] Extracted: Nationwide Insurance (70 fields) from https://www.yellowpages.com/takoma-park-md/mip/nationwide-insurance-489030070
+[INFO] Extracted: Nationwide Insurance (70 fields) from https://www.yellowpages.com/hyattsville-md/mip/nationwide-insurance-504083100
+[INFO] Extracted: Juan Aguirre - State Farm Insurance Agent (93 fields) from https://www.yellowpages.com/gaithersburg-md/mip/juan-aguirre-state-farm-insurance-agent-536580157
+[INFO] Extracted: George Vassilas - State Farm Insurance Agent (70 fields) from https://www.yellowpages.com/hyattsville-md/mip/george-vassilas-state-farm-insurance-agent-489912439
+[INFO] Extracted: Itzabel Mayrant - State Farm Insurance Agent (75 fields) from https://www.yellowpages.com/hyattsville-md/mip/itzabel-mayrant-state-farm-insurance-agent-559917247
+[INFO] Extracted: HealthMarkets Insurance Agency (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/healthmarkets-insurance-agency-548389108
+[INFO] Extracted: HealthMarkets Insurance - Jonathan Saltzman (67 fields) from https://www.yellowpages.com/silver-spring-md/mip/healthmarkets-insurance-jonathan-saltzman-567802289
+[INFO] Extracted: Allstate Insurance: Azqa Goraya (76 fields) from https://www.yellowpages.com/hyattsville-md/mip/allstate-insurance-azqa-goraya-526568052
+[INFO] Extracted: Rice, Brian (71 fields) from https://www.yellowpages.com/silver-spring-md/mip/rice-brian-559484372
+[INFO] Extracted: Allstate Insurance: Surya Ayala (80 fields) from https://www.yellowpages.com/hyattsville-md/mip/allstate-insurance-surya-ayala-506650681
+[INFO] Extracted: Baumgarten, Herbert, AGT (64 fields) from https://www.yellowpages.com/silver-spring-md/mip/baumgarten-herbert-agt-574819480
+[INFO] Extracted: Troka Insurance, Inc. (63 fields) from https://www.yellowpages.com/washington-dc/mip/troka-insurance-inc-467191993
+[INFO] Extracted: HealthMarkets Insurance - Herbert Baumgarten (61 fields) from https://www.yellowpages.com/silver-spring-md/mip/healthmarkets-insurance-herbert-baumgarten-576130156
+[INFO] Extracted: Nationwide Insurance (75 fields) from https://www.yellowpages.com/washington-dc/mip/nationwide-insurance-458086906
+[INFO] Extracted: Curt Sumpter - State Farm Insurance Agent (90 fields) from https://www.yellowpages.com/silver-spring-md/mip/curt-sumpter-state-farm-insurance-agent-22626555
+[INFO] Extracted: Direct Auto Service (64 fields) from https://www.yellowpages.com/hyattsville-md/mip/direct-auto-service-25396147
+[INFO] Extracted: Venice Mundle-Harvey: Allstate Insurance (63 fields) from https://www.yellowpages.com/montgomery-village-md/mip/venice-mundle-harvey-allstate-insurance-531655686
+[INFO] Extracted: Allstate Insurance: Felicia Folarin (86 fields) from https://www.yellowpages.com/washington-dc/mip/allstate-insurance-felicia-folarin-531178544
+[INFO] Extracted: Venice Mundle-Harvey: Allstate Insurance (76 fields) from https://www.yellowpages.com/montgomery-village-md/mip/venice-mundle-harvey-allstate-insurance-535976952
+[INFO] Extracted: GDI Insurance Inc (62 fields) from https://www.yellowpages.com/washington-dc/mip/gdi-insurance-inc-551218869
+[INFO] Extracted: Venice Mundle-Harvey: Allstate Insurance (92 fields) from https://www.yellowpages.com/montgomery-village-md/mip/venice-mundle-harvey-allstate-insurance-544952988
+[INFO] Extracted: Terry White, Sr. - State Farm Insurance Agent (84 fields) from https://www.yellowpages.com/washington-dc/mip/terry-white-sr-state-farm-insurance-agent-495820299
+[INFO] Extracted: Nationwide Insurance (75 fields) from https://www.yellowpages.com/montgomery-village-md/mip/nationwide-insurance-496033005
+[INFO] Extracted: Nationwide Insurance (86 fields) from https://www.yellowpages.com/washington-dc/mip/nationwide-insurance-473042708
+[INFO] Extracted: Zemel Insurance Agency (70 fields) from https://www.yellowpages.com/montgomery-village-md/mip/zemel-insurance-agency-18241178
+[INFO] Extracted: State Farm: Dave Holland (70 fields) from https://www.yellowpages.com/mc-lean-va/mip/state-farm-dave-holland-480168854
+[INFO] Extracted: Primerica (69 fields) from https://www.yellowpages.com/gaithersburg-md/mip/primerica-452452138
+[INFO] Extracted: Andy Pyo - State Farm Insurance Agent (68 fields) from https://www.yellowpages.com/mc-lean-va/mip/andy-pyo-state-farm-insurance-agent-571101721
+[INFO] Extracted: Abbey Olusanya - State Farm Insurance Agent (85 fields) from https://www.yellowpages.com/gaithersburg-md/mip/abbey-olusanya-state-farm-insurance-agent-548508316
+[INFO] Extracted: Wariaghli, Tarik (63 fields) from https://www.yellowpages.com/mclean-va/mip/wariaghli-tarik-561257735
+[INFO] Progress saved: 360 businesses processed
+[INFO] Total scraped results: 360
+[INFO] Final data saved to: Life Insurance_20852_2025-07-06.csv
+[INFO] Browser closed at 2025-07-06T03:32:31.921Z

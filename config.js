@@ -1,5 +1,17 @@
 const readline = require('readline');
 
+// ==========================
+// Yellowpages.com Scraper - Configuration Module
+// ==========================
+// This module handles all user configuration, including category and subcategory selection, search term, zip code, and parallelism settings.
+// It provides a menu-driven CLI for user input and exports the configuration object for use by the main scraper.
+//
+// Key Features:
+// - Business categories and subcategories are defined for user selection
+// - Supports a "Custom Search" option for arbitrary search terms
+// - Prompts user for zip code and parallelism
+// - Validates and summarizes configuration before proceeding
+
 const BUSINESS_CATEGORIES = [
   {
     name: "Auto Services",

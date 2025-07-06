@@ -1,5 +1,11 @@
 const fs = require('fs');
 
+// ==========================
+// Yellowpages.com Scraper - CSV Utilities Module
+// ==========================
+// This module provides functions to convert scraped data to CSV format and save it to disk.
+// It ensures all rows have all columns (backfilling missing values) and handles CSV escaping.
+
 // Function to convert data to CSV with dynamic headers
 function convertToCSV(data) {
   if (data.length === 0) return '';

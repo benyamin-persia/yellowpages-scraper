@@ -1,3 +1,9 @@
+// ==========================
+// Yellowpages.com Scraper - Link Extraction Module
+// ==========================
+// This module provides functions to extract business detail links from Yellowpages.com search result pages and to determine the total number of result pages.
+// It filters out ads and duplicate listings, ensuring only organic business links are returned.
+
 // Function to extract YP links from search results
 async function extractYPLinks(page) {
   return await page.evaluate(() => {

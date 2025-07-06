@@ -1,3 +1,10 @@
+// ==========================
+// Yellowpages.com Scraper - Data Extraction Module
+// ==========================
+// This module provides functions to analyze available data fields on a business detail page and extract all relevant data.
+// It uses flexible selectors to adapt to changes in Yellowpages.com layout.
+// All field extraction is dynamic, based on what is present on each page.
+
 // Function to analyze available data fields in the main container
 async function analyzeAvailableFields(page) {
   return await page.evaluate(() => {

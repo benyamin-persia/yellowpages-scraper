@@ -3,6 +3,12 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
 puppeteer.use(StealthPlugin());
 
+// ==========================
+// Yellowpages.com Scraper - Browser Management Module
+// ==========================
+// This module provides functions to launch and configure the Puppeteer browser instance, block unnecessary resources, and set up each page with proper headers and user agent.
+// It uses puppeteer-extra and the stealth plugin to avoid detection.
+
 // Function to launch browser with proper configuration
 async function launchBrowser() {
   return await puppeteer.launch({
