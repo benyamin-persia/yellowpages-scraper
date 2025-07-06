@@ -1,6 +1,7 @@
 # Yellowpages.com Business Scraper
 
 A comprehensive, modular web scraping tool designed to extract business information from Yellowpages.com. This tool is built with Node.js and Puppeteer, featuring dynamic field discovery, parallel processing, and robust error handling.
+![image](https://github.com/user-attachments/assets/e06251ee-82eb-4822-bd36-757e02a42fa9)
 
 ## 🚀 Features
 
