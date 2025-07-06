@@ -1,10 +1,12 @@
 const fs = require('fs');
+const path = require('path');
 
 // ==========================
 // Yellowpages.com Scraper - CSV Utilities Module
 // ==========================
 // This module provides functions to convert scraped data to CSV format and save it to disk.
 // It ensures all rows have all columns (backfilling missing values) and handles CSV escaping.
+// Updated to support project-specific folder organization.
 
 // Function to convert data to CSV with dynamic headers
 function convertToCSV(data) {
@@ -40,7 +42,7 @@ function convertToCSV(data) {
   return csvContent;
 }
 
-// Function to save data to CSV file
+// Function to save data to CSV file (legacy function for backward compatibility)
 function saveToCSV(data, searchTerm, zipCode) {
   const csvContent = convertToCSV(data);
   const filename = `${searchTerm}_${zipCode}_${new Date().toISOString().split('T')[0]}.csv`;
@@ -48,7 +50,27 @@ function saveToCSV(data, searchTerm, zipCode) {
   return filename;
 }
 
+// Function to save data to CSV file within a project folder
+function saveToCSVInProject(data, searchTerm, zipCode, projectFolderPath = null) {
+  const csvContent = convertToCSV(data);
+  const timestamp = new Date().toISOString().split('T')[0];
+  
+  if (projectFolderPath) {
+    // Save within project folder
+    const filename = `final_results_${data.length}_businesses.csv`;
+    const filePath = path.join(projectFolderPath, filename);
+    fs.writeFileSync(filePath, csvContent, 'utf8');
+    return filename;
+  } else {
+    // Legacy behavior - save in current directory
+    const filename = `${searchTerm}_${zipCode}_${timestamp}.csv`;
+    fs.writeFileSync(filename, csvContent, 'utf8');
+    return filename;
+  }
+}
+
 module.exports = {
   convertToCSV,
-  saveToCSV
+  saveToCSV,
+  saveToCSVInProject
 }; 

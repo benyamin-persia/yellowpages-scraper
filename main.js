@@ -14,11 +14,12 @@ const path = require('path');
 //
 // Key Steps:
 // 1. Load user configuration (category, search term, zip code, parallelism)
-// 2. Launch browser and determine total number of result pages
-// 3. For each batch of pages, extract business links in parallel
-// 4. For each business link, extract all available data fields sequentially (to allow dynamic field discovery)
-// 5. Normalize and save results to CSV after each batch
-// 6. At the end, save a log file summarizing the run
+// 2. Create project-specific folder for all outputs
+// 3. Launch browser and determine total number of result pages
+// 4. For each batch of pages, extract business links in parallel
+// 5. For each business link, extract all available data fields sequentially (to allow dynamic field discovery)
+// 6. Normalize and save results to CSV after each batch within the project folder
+// 7. At the end, save a log file summarizing the run within the project folder
 //
 // All major actions and errors are logged to the console and to a log file for debugging and auditing.
 
@@ -28,6 +29,18 @@ async function scrapeYellowpages() {
   let totalPages = null;
   let globalAvailableFields = {}; // Global field tracking across all pages
   const logEntries = []; // Array to collect log entries for the log file
+
+  // Create project-specific folder for this scraping session
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
+  const projectFolderName = `${config.searchTerm}_${config.zipCode}_${timestamp}`;
+  const projectFolderPath = path.join(process.cwd(), projectFolderName);
+  
+  // Create the project folder if it doesn't exist
+  if (!fs.existsSync(projectFolderPath)) {
+    fs.mkdirSync(projectFolderPath, { recursive: true });
+    console.log(`📁 Created project folder: ${projectFolderName}`);
+    logEntries.push(`[INFO] Created project folder: ${projectFolderName}`);
+  }
 
   // Launch a new browser instance using Puppeteer with stealth plugin
   const browser = await launchBrowser();
@@ -40,8 +53,9 @@ async function scrapeYellowpages() {
   // Construct the initial search URL based on user config
   const url = `https://www.yellowpages.com/search?search_terms=${encodeURIComponent(config.searchTerm)}&geo_location_terms=${config.zipCode}&page=1`;
   console.log(`\n🔍 Starting scrape for: ${config.businessCategory} in ${config.zipCode}`);
+  console.log(`📁 Project folder: ${projectFolderName}`);
   console.log(`URL: ${url}`);
-  logEntries.push(`[INFO] Scraping started for: ${config.businessCategory} in ${config.zipCode} | URL: ${url}`);
+  logEntries.push(`[INFO] Scraping started for: ${config.businessCategory} in ${config.zipCode} | Project folder: ${projectFolderName} | URL: ${url}`);
   
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
   await page.waitForSelector('.search-results', { timeout: 10000 });
@@ -153,30 +167,71 @@ async function scrapeYellowpages() {
       .flat();
     allResults = allResults.concat(flattenedResults);
     
-    // Save progress to CSV after each batch
+    // Save progress to CSV after each batch within the project folder
     const csvContent = convertToCSV(allResults);
-    const filename = `${config.searchTerm}_${config.zipCode}_${new Date().toISOString().split('T')[0]}.csv`;
-    fs.writeFileSync(filename, csvContent, 'utf8');
+    const progressFilename = `progress_batch_${batchStart}-${batchEnd}_${allResults.length}_businesses.csv`;
+    const progressFilePath = path.join(projectFolderPath, progressFilename);
+    fs.writeFileSync(progressFilePath, csvContent, 'utf8');
     console.log(`💾 Progress saved: ${allResults.length} businesses processed`);
-    logEntries.push(`[INFO] Progress saved: ${allResults.length} businesses processed`);
+    console.log(`📁 Progress file: ${progressFilename}`);
+    logEntries.push(`[INFO] Progress saved: ${allResults.length} businesses processed | File: ${progressFilename}`);
   }
 
   console.log(`\n✅ Total scraped results: ${allResults.length}`);
   logEntries.push(`[INFO] Total scraped results: ${allResults.length}`);
 
-  // Final save to CSV file
-  const filename = saveToCSV(allResults, config.searchTerm, config.zipCode);
-  console.log(`📁 Final data saved to: ${filename}`);
-  logEntries.push(`[INFO] Final data saved to: ${filename}`);
+  // Final save to CSV file within the project folder
+  const finalFilename = `final_results_${allResults.length}_businesses.csv`;
+  const finalFilePath = path.join(projectFolderPath, finalFilename);
+  const csvContent = convertToCSV(allResults);
+  fs.writeFileSync(finalFilePath, csvContent, 'utf8');
+  console.log(`📁 Final data saved to: ${finalFilename}`);
+  logEntries.push(`[INFO] Final data saved to: ${finalFilename}`);
 
   await browser.close();
   logEntries.push(`[INFO] Browser closed at ${new Date().toISOString()}`);
   console.log('\n🎉 Scraping completed successfully!');
 
-  // Write log file at the end of the run
-  const logFileName = `${config.searchTerm}_${config.zipCode}_${new Date().toISOString().replace(/[:.]/g, '-')}_scrape.log`;
-  fs.writeFileSync(logFileName, logEntries.join('\n'), 'utf8');
+  // Write log file within the project folder
+  const logFileName = `scrape_log_${new Date().toISOString().replace(/[:.]/g, '-')}.log`;
+  const logFilePath = path.join(projectFolderPath, logFileName);
+  fs.writeFileSync(logFilePath, logEntries.join('\n'), 'utf8');
   console.log(`📝 Log file written: ${logFileName}`);
+  
+  // Create a summary file with project information
+  const summaryContent = `Yellowpages.com Scraper - Project Summary
+==================================================
+
+Project Details:
+- Search Term: ${config.searchTerm}
+- Business Category: ${config.businessCategory}
+- Zip Code: ${config.zipCode}
+- Parallel Pages: ${config.parallelPages}
+- Total Pages Scraped: ${totalPages}
+- Total Businesses Extracted: ${allResults.length}
+- Project Start Time: ${new Date().toISOString()}
+
+Files Generated:
+- Final Results: ${finalFilename}
+- Progress Files: Multiple batch files
+- Log File: ${logFileName}
+- This Summary: project_summary.txt
+
+Data Fields Extracted: ${Object.keys(globalAvailableFields).length} unique fields
+Global Available Fields: ${Object.keys(globalAvailableFields).join(', ')}
+
+Project completed successfully!
+`;
+  
+  const summaryFilePath = path.join(projectFolderPath, 'project_summary.txt');
+  fs.writeFileSync(summaryFilePath, summaryContent, 'utf8');
+  
+  console.log(`\n📋 Project Summary:`);
+  console.log(`📁 Project Folder: ${projectFolderName}`);
+  console.log(`📊 Total Businesses: ${allResults.length}`);
+  console.log(`📄 Total Pages: ${totalPages}`);
+  console.log(`🔍 Data Fields: ${Object.keys(globalAvailableFields).length}`);
+  console.log(`📝 Files Created: Final CSV, Progress CSVs, Log, Summary`);
 }
 
 // Main execution
