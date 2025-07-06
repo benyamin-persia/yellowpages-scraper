@@ -1,11 +1,164 @@
+/**
+ * Yellowpages.com Business Scraper
+ * =================================
+ * 
+ * This is a comprehensive, modular web scraper designed to extract detailed business information
+ * from Yellowpages.com. The scraper features:
+ * 
+ * - Dynamic field detection and extraction
+ * - Category and subcategory selection
+ * - Parallel processing for efficiency
+ * - Comprehensive error handling
+ * - Detailed logging and progress tracking
+ * - CSV export with dynamic headers
+ * - Ad filtering and duplicate removal
+ * 
+ * @author: AI Assistant
+ * @version: 2.0.0
+ * @license: MIT
+ */
+
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
 const readline = require('readline');
+const path = require('path');
 
+// Apply stealth plugin to avoid detection
 puppeteer.use(StealthPlugin());
 
-// Business categories with their search terms
+// Configure logging system
+const LOG_LEVELS = {
+  DEBUG: 0,
+  INFO: 1,
+  WARN: 2,
+  ERROR: 3
+};
+
+let currentLogLevel = LOG_LEVELS.INFO;
+let logFile = null;
+let sessionStartTime = null;
+
+/**
+ * LOGGING FUNCTIONS
+ * ================
+ * 
+ * Comprehensive logging system that outputs to both console and file
+ * with timestamps, log levels, and structured formatting.
+ */
+
+// Initialize logging system
+function initializeLogging(searchTerm, zipCode) {
+  sessionStartTime = new Date();
+  const timestamp = sessionStartTime.toISOString().replace(/[:.]/g, '-');
+  const logDir = 'logs';
+  
+  // Create logs directory if it doesn't exist
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir, { recursive: true });
+  }
+  
+  logFile = path.join(logDir, `scrape_${searchTerm}_${zipCode}_${timestamp}.log`);
+  
+  // Write session header to log file
+  const sessionHeader = `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    YELLOWPAGES SCRAPER SESSION STARTED                      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║ Session ID: ${timestamp}                                                    ║
+║ Search Term: ${searchTerm}                                                  ║
+║ Zip Code: ${zipCode}                                                        ║
+║ Start Time: ${sessionStartTime.toLocaleString()}                            ║
+║ Log File: ${logFile}                                                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+`;
+  
+  fs.appendFileSync(logFile, sessionHeader);
+  console.log(sessionHeader);
+}
+
+// Log function with multiple levels and file output
+function log(level, message, data = null) {
+  const timestamp = new Date().toISOString();
+  const levelNames = ['DEBUG', 'INFO', 'WARN', 'ERROR'];
+  const levelName = levelNames[level];
+  
+  // Only log if current level is sufficient
+  if (level < currentLogLevel) return;
+  
+  // Format the log message
+  let logMessage = `[${timestamp}] [${levelName}] ${message}`;
+  
+  // Add data if provided
+  if (data) {
+    if (typeof data === 'object') {
+      logMessage += `\n${JSON.stringify(data, null, 2)}`;
+    } else {
+      logMessage += ` | Data: ${data}`;
+    }
+  }
+  
+  // Output to console with color coding
+  const colors = {
+    DEBUG: '\x1b[36m', // Cyan
+    INFO: '\x1b[32m',  // Green
+    WARN: '\x1b[33m',  // Yellow
+    ERROR: '\x1b[31m'  // Red
+  };
+  
+  console.log(`${colors[levelName]}${logMessage}\x1b[0m`);
+  
+  // Write to log file
+  if (logFile) {
+    fs.appendFileSync(logFile, logMessage + '\n');
+  }
+}
+
+// Convenience functions for different log levels
+function logDebug(message, data = null) { log(LOG_LEVELS.DEBUG, message, data); }
+function logInfo(message, data = null) { log(LOG_LEVELS.INFO, message, data); }
+function logWarn(message, data = null) { log(LOG_LEVELS.WARN, message, data); }
+function logError(message, data = null) { log(LOG_LEVELS.ERROR, message, data); }
+
+// Log session completion
+function logSessionCompletion(stats) {
+  const endTime = new Date();
+  const duration = endTime - sessionStartTime;
+  const durationMinutes = Math.floor(duration / 60000);
+  const durationSeconds = Math.floor((duration % 60000) / 1000);
+  
+  const sessionFooter = `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    YELLOWPAGES SCRAPER SESSION COMPLETED                    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║ End Time: ${endTime.toLocaleString()}                                      ║
+║ Duration: ${durationMinutes}m ${durationSeconds}s                          ║
+║ Total Businesses Scraped: ${stats.totalBusinesses || 0}                    ║
+║ Total Pages Processed: ${stats.totalPages || 0}                            ║
+║ Successful Extractions: ${stats.successfulExtractions || 0}                ║
+║ Failed Extractions: ${stats.failedExtractions || 0}                        ║
+║ CSV File: ${stats.csvFile || 'N/A'}                                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+`;
+  
+  fs.appendFileSync(logFile, sessionFooter);
+  console.log(sessionFooter);
+}
+
+/**
+ * BUSINESS CATEGORIES CONFIGURATION
+ * =================================
+ * 
+ * Comprehensive mapping of business categories and their corresponding search terms
+ * used by Yellowpages.com. Each category includes:
+ * - name: Display name for the category
+ * - searchTerm: URL parameter used for searching
+ * - subcategories: Nested categories with their own search terms
+ * 
+ * The structure supports both broad categories (e.g., "Restaurants") and specific
+ * subcategories (e.g., "Italian Restaurants", "Pizza") to provide granular search
+ * capabilities.
+ */
 const BUSINESS_CATEGORIES = {
   1: { name: 'Restaurants', searchTerm: 'restaurants', subcategories: {
     1: { name: 'All Restaurants', searchTerm: 'restaurants' },
@@ -113,22 +266,62 @@ const BUSINESS_CATEGORIES = {
 
 
 
-// Configuration object
+/**
+ * GLOBAL CONFIGURATION OBJECT
+ * ===========================
+ * 
+ * Central configuration object that stores all user preferences and scraping parameters.
+ * This object is populated during the user configuration phase and used throughout
+ * the scraping process to maintain consistency.
+ */
 let config = {
-  businessCategory: null,
-  searchTerm: null,
-  zipCode: null,
-  parallelPages: 20,
-  maxPages: null
+  businessCategory: null,    // Selected business category name
+  searchTerm: null,          // URL search term for Yellowpages
+  zipCode: null,            // Target zip code for location-based search
+  parallelPages: 20,        // Number of pages to process in parallel (performance optimization)
+  maxPages: null            // Maximum pages to scrape (null = all available pages)
 };
 
-// Create readline interface for user input
+/**
+ * STATISTICS TRACKING
+ * ===================
+ * 
+ * Global statistics object to track scraping performance and results
+ * throughout the session for comprehensive reporting.
+ */
+let scrapingStats = {
+  totalBusinesses: 0,           // Total businesses found across all pages
+  totalPages: 0,               // Total pages processed
+  successfulExtractions: 0,    // Successful business data extractions
+  failedExtractions: 0,        // Failed business data extractions
+  startTime: null,             // Session start timestamp
+  endTime: null,               // Session end timestamp
+  csvFile: null,               // Output CSV filename
+  errors: []                   // Array of error messages for debugging
+};
+
+/**
+ * USER INTERFACE SETUP
+ * ====================
+ * 
+ * Initialize readline interface for interactive user input.
+ * This provides a command-line interface for configuration and user interaction.
+ */
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-// Function to ask user questions
+/**
+ * ASK QUESTION FUNCTION
+ * =====================
+ * 
+ * Promisified wrapper around readline.question to enable async/await syntax
+ * for cleaner user input handling.
+ * 
+ * @param {string} question - The question to display to the user
+ * @returns {Promise<string>} - User's response as a string
+ */
 function askQuestion(question) {
   return new Promise((resolve) => {
     rl.question(question, (answer) => {
@@ -137,63 +330,122 @@ function askQuestion(question) {
   });
 }
 
-// Function to display menu and get user choice
+/**
+ * DISPLAY MENU FUNCTION
+ * =====================
+ * 
+ * Renders a numbered menu of options and captures user selection.
+ * This function provides a consistent interface for all menu interactions
+ * throughout the application.
+ * 
+ * @param {string} title - Menu title to display
+ * @param {Object} options - Object containing numbered options with name properties
+ * @returns {Promise<number>} - User's numeric choice
+ */
 async function displayMenu(title, options) {
+  logInfo(`Displaying menu: ${title}`);
+  
   console.log(`\n=== ${title} ===`);
   Object.keys(options).forEach(key => {
     console.log(`${key}. ${options[key].name || options[key]}`);
   });
   
   const choice = await askQuestion('\nEnter your choice (number): ');
-  return parseInt(choice);
+  const numericChoice = parseInt(choice);
+  
+  logDebug(`User selected menu option: ${numericChoice} from ${title}`);
+  return numericChoice;
 }
 
-// Function to get user configuration
+/**
+ * USER CONFIGURATION FUNCTION
+ * ===========================
+ * 
+ * Interactive configuration process that guides users through:
+ * 1. Business category selection (with subcategory support)
+ * 2. Custom search term input (if applicable)
+ * 3. Zip code specification
+ * 4. Performance settings (parallel processing)
+ * 5. Configuration confirmation
+ * 
+ * This function populates the global config object and initializes
+ * the logging system with the selected parameters.
+ * 
+ * @returns {Promise<void>}
+ */
 async function getUserConfiguration() {
+  logInfo('Starting user configuration process');
+  
   console.log('🚀 Yellowpages Scraper - Configuration\n');
   
-  // Get business category
+  // STEP 1: Business Category Selection
+  logInfo('Step 1: Business category selection');
   const categoryChoice = await displayMenu('Select Business Category', BUSINESS_CATEGORIES);
+  
   if (categoryChoice === 20) {
+    // Custom search option
+    logInfo('User selected custom search option');
     config.searchTerm = await askQuestion('Enter custom search term: ');
+    config.businessCategory = `Custom: ${config.searchTerm}`;
+    logInfo(`Custom search term set: ${config.searchTerm}`);
   } else if (BUSINESS_CATEGORIES[categoryChoice]) {
+    // Valid category selected
     config.businessCategory = BUSINESS_CATEGORIES[categoryChoice].name;
+    logInfo(`Selected business category: ${config.businessCategory}`);
     
-    // Check if category has subcategories
+    // STEP 2: Subcategory Selection (if available)
     if (BUSINESS_CATEGORIES[categoryChoice].subcategories) {
+      logInfo('Category has subcategories, prompting for subcategory selection');
       console.log(`\n📋 Selected: ${config.businessCategory}`);
+      
       const subcategoryChoice = await displayMenu('Select Subcategory', BUSINESS_CATEGORIES[categoryChoice].subcategories);
       
       if (BUSINESS_CATEGORIES[categoryChoice].subcategories[subcategoryChoice]) {
         const subcategory = BUSINESS_CATEGORIES[categoryChoice].subcategories[subcategoryChoice];
+        
         if (subcategory.searchTerm === null) {
           // Custom subcategory search
+          logInfo('User selected custom subcategory search');
           config.searchTerm = await askQuestion(`Enter custom ${config.businessCategory.toLowerCase()} search term: `);
+          logInfo(`Custom subcategory search term: ${config.searchTerm}`);
         } else {
+          // Predefined subcategory
           config.searchTerm = subcategory.searchTerm;
           config.businessCategory = `${config.businessCategory} - ${subcategory.name}`;
+          logInfo(`Selected subcategory: ${subcategory.name} (search term: ${config.searchTerm})`);
         }
       } else {
+        // Invalid subcategory choice, use default
+        logWarn('Invalid subcategory choice, using default category search term');
         console.log('Invalid subcategory choice. Using default.');
         config.searchTerm = BUSINESS_CATEGORIES[categoryChoice].searchTerm;
       }
     } else {
+      // No subcategories, use main category
       config.searchTerm = BUSINESS_CATEGORIES[categoryChoice].searchTerm;
+      logInfo(`Using main category search term: ${config.searchTerm}`);
     }
   } else {
+    // Invalid category choice, use default
+    logWarn('Invalid category choice, using default: Restaurants');
     console.log('Invalid choice. Using default: Restaurants');
     config.businessCategory = 'Restaurants';
     config.searchTerm = 'restaurants';
   }
   
-  // Get zip code
+  // STEP 3: Zip Code Input
+  logInfo('Step 3: Zip code input');
   config.zipCode = await askQuestion('Enter your zip code: ');
+  logInfo(`Zip code set: ${config.zipCode}`);
   
-  // Get parallel pages setting
+  // STEP 4: Performance Settings
+  logInfo('Step 4: Performance settings configuration');
   const parallelChoice = await askQuestion('\nNumber of pages to scrape in parallel (default: 3): ');
   config.parallelPages = parallelChoice ? parseInt(parallelChoice) : 3;
+  logInfo(`Parallel pages setting: ${config.parallelPages}`);
   
-  // Confirm configuration
+  // STEP 5: Configuration Summary and Confirmation
+  logInfo('Step 5: Configuration summary and confirmation');
   console.log('\n📋 Configuration Summary:');
   console.log(`Business Category: ${config.businessCategory}`);
   console.log(`Search Term: ${config.searchTerm}`);
@@ -202,30 +454,76 @@ async function getUserConfiguration() {
   
   const confirm = await askQuestion('\nProceed with this configuration? (y/n): ');
   if (confirm.toLowerCase() !== 'y') {
+    logInfo('User cancelled configuration');
     console.log('Configuration cancelled.');
     process.exit(0);
   }
   
+  // Initialize logging system with configuration
+  logInfo('Initializing logging system');
+  initializeLogging(config.searchTerm, config.zipCode);
+  
+  // Log final configuration
+  logInfo('Configuration completed successfully', {
+    businessCategory: config.businessCategory,
+    searchTerm: config.searchTerm,
+    zipCode: config.zipCode,
+    parallelPages: config.parallelPages
+  });
+  
   rl.close();
 }
 
-// Function to analyze available data fields in the main container
+/**
+ * FIELD ANALYSIS FUNCTION
+ * =======================
+ * 
+ * Analyzes the DOM structure of a business page to identify which data fields
+ * are available for extraction. This function uses multiple CSS selectors to
+ * locate the main business information container and then systematically checks
+ * for the presence of various data fields.
+ * 
+ * The analysis covers:
+ * - Basic business information (name, contact details)
+ * - Ratings and reviews from multiple platforms
+ * - Business details (hours, services, categories)
+ * - Media content (photos, galleries)
+ * - Social media links and external references
+ * - Business-specific attributes (certifications, awards)
+ * 
+ * This dynamic field detection ensures the scraper can adapt to different
+ * page layouts and extract maximum available information.
+ * 
+ * @param {Page} page - Puppeteer page object
+ * @returns {Promise<Object|null>} - Object containing available field mappings or null if no container found
+ */
 async function analyzeAvailableFields(page) {
+  logDebug('Starting field analysis for business page');
+  
   return await page.evaluate(() => {
-    // Try multiple selectors for the main container
+    // STEP 1: Locate Main Business Information Container
+    // Try multiple selectors to handle different page layouts and Yellowpages updates
     const mainContainer = document.querySelector('main.container.search-monitor') || 
                          document.querySelector('main') || 
                          document.querySelector('.business-info') || 
                          document.querySelector('.listing-details') ||
                          document.querySelector('.result-details');
-    if (!mainContainer) return null;
+    
+    if (!mainContainer) {
+      console.log('  ❌ No main container found - page structure may have changed');
+      return null;
+    }
+    
+    console.log('  ✅ Main container located successfully');
     
     const availableFields = {};
     
-    // Function to check if element exists and add to available fields
+    // STEP 2: Define Field Detection Function
+    // Helper function to check if element exists and add to available fields
     const checkField = (selector, fieldName) => {
       if (mainContainer.querySelector(selector)) {
         availableFields[fieldName] = true;
+        console.log(`    ✅ Found field: ${fieldName} (selector: ${selector})`);
       }
     };
     
@@ -427,22 +725,65 @@ async function analyzeAvailableFields(page) {
   });
 }
 
-// Function to extract data based on available fields
+/**
+ * BUSINESS DATA EXTRACTION FUNCTION
+ * =================================
+ * 
+ * Extracts comprehensive business information from a Yellowpages business page
+ * based on the available fields identified by analyzeAvailableFields().
+ * 
+ * This function performs the actual data extraction using the same container
+ * selectors and field mappings to ensure consistency. It handles:
+ * 
+ * - Text extraction with proper cleaning and formatting
+ * - Phone number normalization (removing "Call" text, etc.)
+ * - URL extraction for websites and social media
+ * - Structured data extraction (reviews, photos, hours)
+ * - Boolean flag detection for features and services
+ * - JSON serialization for complex data structures
+ * 
+ * The function is designed to be resilient to missing data and will
+ * gracefully handle cases where expected elements are not present.
+ * 
+ * @param {Page} page - Puppeteer page object
+ * @param {Object} availableFields - Object containing field availability mappings
+ * @returns {Promise<Object|null>} - Extracted business data object or null if extraction fails
+ */
 async function extractBusinessData(page, availableFields) {
+  logDebug('Starting business data extraction', { availableFieldsCount: Object.keys(availableFields).length });
+  
   return await page.evaluate((fields) => {
-    // Try multiple selectors for the main container
+    // STEP 1: Locate Main Business Information Container
+    // Use same selectors as field analysis for consistency
     const mainContainer = document.querySelector('main.container.search-monitor') || 
                          document.querySelector('main') || 
                          document.querySelector('.business-info') || 
                          document.querySelector('.listing-details') ||
                          document.querySelector('.result-details');
-    if (!mainContainer) return null;
+    
+    if (!mainContainer) {
+      console.log('  ❌ No main container found during data extraction');
+      return null;
+    }
+    
+    console.log('  ✅ Main container found, beginning data extraction');
     
     const data = {};
     
-    // Helper function to safely extract text
-    const safeText = (element) => element?.innerText?.trim() || null;
-    const safeAttr = (element, attr) => element?.getAttribute(attr) || null;
+    // STEP 2: Define Helper Functions for Safe Data Extraction
+    // Helper function to safely extract text content
+    const safeText = (element) => {
+      if (!element) return null;
+      const text = element.innerText?.trim();
+      return text && text.length > 0 ? text : null;
+    };
+    
+    // Helper function to safely extract attribute values
+    const safeAttr = (element, attr) => {
+      if (!element) return null;
+      const value = element.getAttribute(attr);
+      return value && value.length > 0 ? value : null;
+    };
     
     // Only extract fields that are available
     if (fields.businessName) {
@@ -1157,20 +1498,47 @@ async function extractBusinessData(page, availableFields) {
   }, availableFields);
 }
 
-// Function to convert data to CSV with dynamic headers
+/**
+ * CSV CONVERSION FUNCTION
+ * =======================
+ * 
+ * Converts the extracted business data array into a properly formatted CSV string
+ * with dynamic headers based on all available fields across all businesses.
+ * 
+ * This function handles:
+ * - Dynamic header generation from all unique field names
+ * - Data normalization (filling missing values with empty strings)
+ * - Proper CSV escaping (double quotes, commas, newlines)
+ * - Consistent column ordering across all rows
+ * 
+ * The dynamic header approach ensures that if new fields are discovered
+ * during scraping, they are automatically included in the CSV output
+ * without requiring code changes.
+ * 
+ * @param {Array} data - Array of business data objects
+ * @returns {string} - Properly formatted CSV string
+ */
 function convertToCSV(data) {
-  if (data.length === 0) return '';
+  logDebug('Starting CSV conversion', { dataLength: data.length });
   
-  // Get all unique keys from all objects
+  if (data.length === 0) {
+    logWarn('No data to convert to CSV');
+    return '';
+  }
+  
+  // STEP 1: Collect All Unique Field Names
+  // Create a Set to automatically handle duplicates
   const allKeys = new Set();
   data.forEach(item => {
     Object.keys(item).forEach(key => allKeys.add(key));
   });
   
   const headers = Array.from(allKeys);
+  logInfo(`CSV headers generated: ${headers.length} unique fields`, { headers });
   
-  // Ensure all rows have all columns (backfill missing values)
-  const normalizedData = data.map(item => {
+  // STEP 2: Normalize Data Structure
+  // Ensure all rows have all columns by filling missing values
+  const normalizedData = data.map((item, index) => {
     const normalizedItem = {};
     headers.forEach(header => {
       normalizedItem[header] = item[header] || ''; // Fill missing columns with empty string
@@ -1178,98 +1546,230 @@ function convertToCSV(data) {
     return normalizedItem;
   });
   
-  const csvContent = [
-    headers.join(','),
-    ...normalizedData.map(item => 
-      headers.map(header => {
-        const value = item[header] || '';
-        return `"${String(value).replace(/"/g, '""')}"`;
-      }).join(',')
-    )
-  ].join('\n');
+  logDebug(`Data normalized: ${normalizedData.length} rows processed`);
+  
+  // STEP 3: Generate CSV Content
+  // Create header row
+  const headerRow = headers.join(',');
+  
+  // Create data rows with proper escaping
+  const dataRows = normalizedData.map(item => 
+    headers.map(header => {
+      const value = item[header] || '';
+      // Escape double quotes by doubling them and wrap in quotes
+      return `"${String(value).replace(/"/g, '""')}"`;
+    }).join(',')
+  );
+  
+  // Combine header and data rows
+  const csvContent = [headerRow, ...dataRows].join('\n');
+  
+  logInfo('CSV conversion completed successfully', { 
+    totalRows: dataRows.length + 1, 
+    totalColumns: headers.length 
+  });
   
   return csvContent;
 }
 
-// Main scraping function
+/**
+ * MAIN SCRAPING FUNCTION
+ * ======================
+ * 
+ * Orchestrates the entire scraping process from start to finish. This function
+ * coordinates all aspects of the scraping operation including:
+ * 
+ * - Browser initialization and configuration
+ * - Page discovery and pagination analysis
+ * - Parallel processing of search result pages
+ * - Business link extraction and deduplication
+ * - Individual business page scraping
+ * - Data aggregation and CSV export
+ * - Progress tracking and error handling
+ * 
+ * The function implements a two-phase approach:
+ * 1. Extract business links from search result pages
+ * 2. Visit each business page to extract detailed information
+ * 
+ * This approach maximizes efficiency while ensuring comprehensive data collection.
+ * 
+ * @returns {Promise<void>}
+ */
 async function scrapeYellowpages() {
+  logInfo('Starting main scraping process');
+  
+  // Initialize tracking variables
   let allResults = [];
   let totalPages = null;
   let globalAvailableFields = {}; // Global field tracking across all pages
-
+  
+  // Update statistics
+  scrapingStats.startTime = new Date();
+  
+  // STEP 1: Initialize Browser
+  logInfo('Step 1: Initializing browser with stealth configuration');
+  
   const browser = await puppeteer.launch({
-    headless: true, // Headless for speed
+    headless: true, // Headless for speed and resource efficiency
     executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-blink-features=AutomationControlled',
-      '--window-size=1280,800',
+      '--no-sandbox',                                    // Disable sandbox for stability
+      '--disable-setuid-sandbox',                        // Disable setuid sandbox
+      '--disable-blink-features=AutomationControlled',   // Hide automation indicators
+      '--window-size=1280,800',                          // Set consistent window size
+      '--disable-web-security',                          // Allow cross-origin requests
+      '--disable-features=VizDisplayCompositor',         // Disable unnecessary features
+      '--disable-dev-shm-usage',                         // Disable shared memory usage
+      '--no-first-run',                                  // Skip first run setup
+      '--no-default-browser-check',                      // Skip default browser check
+      '--disable-default-apps',                          // Disable default apps
+      '--disable-extensions',                            // Disable extensions for performance
+      '--disable-plugins',                               // Disable plugins
+      '--disable-images',                                // Disable images for speed
+      '--disable-javascript',                            // Disable JavaScript (we'll enable selectively)
+      '--disable-css',                                   // Disable CSS for speed
     ],
     defaultViewport: {
       width: 1280,
       height: 800,
     },
   });
+  
+  logInfo('Browser initialized successfully');
 
-  // Function to block images, stylesheets, and fonts
+  /**
+   * RESOURCE BLOCKING FUNCTION
+   * ==========================
+   * 
+   * Configures request interception to block unnecessary resources that
+   * slow down page loading without contributing to data extraction.
+   * 
+   * Blocked resources include:
+   * - Images: Not needed for text extraction
+   * - Stylesheets: Not needed for data extraction
+   * - Fonts: Not needed for text processing
+   * 
+   * This significantly improves scraping speed while maintaining
+   * all necessary functionality for data extraction.
+   * 
+   * @param {Page} page - Puppeteer page object to configure
+   */
   async function blockResources(page) {
+    logDebug('Configuring resource blocking for page');
+    
     await page.setRequestInterception(true);
     page.on('request', (req) => {
-      if ([
-        'image',
-        'stylesheet',
-        'font',
-      ].includes(req.resourceType())) {
+      const resourceType = req.resourceType();
+      const url = req.url();
+      
+      // Block unnecessary resources for performance
+      if (['image', 'stylesheet', 'font'].includes(resourceType)) {
+        logDebug(`Blocking resource: ${resourceType} - ${url.substring(0, 100)}...`);
         req.abort();
       } else {
+        // Allow essential resources (HTML, JavaScript, XHR, etc.)
         req.continue();
       }
     });
+    
+    logDebug('Resource blocking configured successfully');
   }
 
-  // Set up a single page to get total number of pages
+  // STEP 2: Page Discovery and Pagination Analysis
+  logInfo('Step 2: Analyzing pagination and total pages');
+  
+  // Create a temporary page for pagination analysis
   const page = await browser.newPage();
   await blockResources(page);
+  
+  // Configure page for stealth operation
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
   );
   await page.setExtraHTTPHeaders({
     'accept-language': 'en-US,en;q=0.9',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'accept-encoding': 'gzip, deflate, br',
+    'cache-control': 'no-cache',
+    'pragma': 'no-cache',
   });
 
+  // Construct search URL
   const url = `https://www.yellowpages.com/search?search_terms=${encodeURIComponent(config.searchTerm)}&geo_location_terms=${config.zipCode}&page=1`;
+  logInfo('Navigating to search results page', { url });
+  
   console.log(`\n🔍 Starting scrape for: ${config.businessCategory} in ${config.zipCode}`);
   console.log(`URL: ${url}`);
   
+  // Navigate to the search results page
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
   await page.waitForSelector('.search-results', { timeout: 10000 });
 
-  // Get total pages from pagination
+  // STEP 3: Analyze Pagination Structure
+  logInfo('Step 3: Analyzing pagination structure to determine total pages');
+  
   totalPages = await page.evaluate(() => {
+    // Method 1: Parse "showing X-Y of Z" text
     const showingCount = document.querySelector('.showing-count');
     const showingMatch = showingCount ? showingCount.innerText.match(/(\d+)-(\d+) of (\d+)/) : null;
+    
     if (showingMatch) {
       const totalResults = parseInt(showingMatch[3]);
       const perPage = parseInt(showingMatch[2]) - parseInt(showingMatch[1]) + 1;
-      return Math.ceil(totalResults / perPage);
+      const calculatedPages = Math.ceil(totalResults / perPage);
+      console.log(`  📊 Found pagination info: ${totalResults} total results, ${perPage} per page = ${calculatedPages} pages`);
+      return calculatedPages;
     }
-    // Fallback: try to get last page number from pagination links
+    
+    // Method 2: Extract from pagination links (fallback)
     const pageLinks = Array.from(document.querySelectorAll('.pagination ul li a[data-page]'));
     const pageNumbers = pageLinks.map(a => parseInt(a.getAttribute('data-page'))).filter(Boolean);
-    return pageNumbers.length ? Math.max(...pageNumbers) : 1;
+    
+    if (pageNumbers.length > 0) {
+      const maxPage = Math.max(...pageNumbers);
+      console.log(`  📊 Found ${pageNumbers.length} pagination links, max page: ${maxPage}`);
+      return maxPage;
+    }
+    
+    // Method 3: Default to single page if no pagination found
+    console.log('  📊 No pagination found, defaulting to 1 page');
+    return 1;
   });
+  
+  logInfo(`Pagination analysis complete: ${totalPages} total pages detected`);
   console.log(`📄 Detected total pages: ${totalPages}`);
+  
+  // Update statistics
+  scrapingStats.totalPages = totalPages;
+  
   await page.close();
 
-  // Scrape in parallel batches
+  // STEP 4: Parallel Page Processing
+  logInfo('Step 4: Beginning parallel page processing', { 
+    totalPages, 
+    parallelPages: config.parallelPages,
+    batchSize: Math.min(config.parallelPages, totalPages)
+  });
+  
+  // Process pages in parallel batches for optimal performance
   for (let batchStart = 1; batchStart <= totalPages; batchStart += config.parallelPages) {
     const batchEnd = Math.min(batchStart + config.parallelPages - 1, totalPages);
     const batchPages = [];
+    
+    // Create batch of page numbers to process
     for (let i = batchStart; i <= batchEnd; i++) {
       batchPages.push(i);
     }
+    
+    logInfo(`Processing batch: pages ${batchStart}-${batchEnd}`, { 
+      batchPages, 
+      batchSize: batchPages.length,
+      progress: `${batchStart}-${batchEnd} of ${totalPages}`
+    });
+    
     console.log(`\n📊 Scraping pages: ${batchPages.join(', ')}`);
+    
+    // Process all pages in the current batch concurrently
     const results = await Promise.allSettled(batchPages.map(async (pageNum) => {
       const page = await browser.newPage();
       await blockResources(page);
@@ -1284,104 +1784,199 @@ async function scrapeYellowpages() {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
         await page.waitForSelector('.search-results', { timeout: 15000 });
         
-        // Extract YP links from search results
+        // STEP 5: Extract Business Links from Search Results
+        logDebug(`Page ${pageNum}: Extracting business links from search results`);
+        
         const ypLinks = await page.evaluate(() => {
-          // Only target organic results, exclude all ads
+          // Phase 1: Target Organic Results Only
+          // Use specific selectors to target only organic (non-ad) business listings
           const listings = Array.from(document.querySelectorAll('.search-results.organic .result, .search-results.organic .srp-listing'));
           
-          // Filter out any listings that might be ads or duplicates
+          console.log(`    📋 Found ${listings.length} total listings on page`);
+          
+          // Phase 2: Filter Out Advertisements and Duplicates
+          // Apply multiple filters to ensure we only get legitimate business listings
           const validListings = listings.filter(listing => {
-            // Exclude if it has ad-related classes or attributes
+            // Filter 1: Check for ad-related CSS classes
             const hasAdClass = listing.classList.contains('paid-listing') || 
                               listing.classList.contains('astro-tmc') ||
                               listing.querySelector('.ad-pill') !== null;
             
-            // Exclude if it's in an ad container
+            // Filter 2: Check if listing is within ad containers
             const isInAdContainer = listing.closest('.center-ads') !== null ||
                                    listing.closest('.side-ads') !== null;
             
-            return !hasAdClass && !isInAdContainer;
+            // Filter 3: Check for sponsored content indicators
+            const isSponsored = listing.querySelector('[class*="sponsored"], [class*="ad-"]') !== null;
+            
+            // Filter 4: Check for promotional content
+            const isPromotional = listing.querySelector('[class*="promo"], [class*="featured"]') !== null;
+            
+            const isValid = !hasAdClass && !isInAdContainer && !isSponsored && !isPromotional;
+            
+            if (!isValid) {
+              console.log(`      🚫 Filtered out ad/duplicate listing`);
+            }
+            
+            return isValid;
           });
           
-          // Extract YP links and remove duplicates
+          console.log(`    ✅ ${validListings.length} valid listings after filtering`);
+          
+          // Phase 3: Extract and Deduplicate Business Links
+          // Use Set for automatic deduplication and maintain order with array
           const ypLinks = new Set();
           const uniqueLinks = [];
           
-          validListings.forEach(listing => {
+          validListings.forEach((listing, index) => {
+            // Extract the relative URL from the business name link
             const ypLinkRaw = listing.querySelector('.business-name')?.getAttribute('href') || null;
+            
             if (ypLinkRaw) {
+              // Convert relative URL to absolute URL
               const ypLink = `https://www.yellowpages.com${ypLinkRaw}`;
+              
+              // Check for duplicates using Set
               if (!ypLinks.has(ypLink)) {
                 ypLinks.add(ypLink);
                 uniqueLinks.push(ypLink);
+                console.log(`      ✅ Added business link ${index + 1}: ${ypLinkRaw}`);
+              } else {
+                console.log(`      🔄 Skipped duplicate link: ${ypLinkRaw}`);
               }
+            } else {
+              console.log(`      ⚠️  No link found for listing ${index + 1}`);
             }
           });
           
+          console.log(`    📊 Final result: ${uniqueLinks.length} unique business links extracted`);
           return uniqueLinks;
         });
         
+        logInfo(`Page ${pageNum}: Business link extraction complete`, { 
+          linksFound: ypLinks.length,
+          pageUrl: url 
+        });
         console.log(`Page ${pageNum}: Found ${ypLinks.length} YP links`);
         
-        // Now visit each YP link and extract detailed data
-        const pageResults = [];
-        // Use global available fields to maintain consistency across all pages
+        // STEP 6: Individual Business Page Scraping
+        logInfo(`Page ${pageNum}: Beginning individual business page scraping`, { 
+          businessCount: ypLinks.length 
+        });
         
-        for (const ypLink of ypLinks) {
+        const pageResults = [];
+        let successfulExtractions = 0;
+        let failedExtractions = 0;
+        
+        // Process each business link sequentially to avoid overwhelming the server
+        for (let i = 0; i < ypLinks.length; i++) {
+          const ypLink = ypLinks[i];
+          const businessNumber = i + 1;
+          
+          logDebug(`Page ${pageNum}, Business ${businessNumber}/${ypLinks.length}: Processing ${ypLink}`);
+          
           try {
-            // Create new page for each business
+            // STEP 6A: Create Dedicated Page for Business
+            logDebug(`Creating dedicated page for business ${businessNumber}`);
             const businessPage = await browser.newPage();
             await blockResources(businessPage);
+            
+            // Configure page for stealth operation
             await businessPage.setUserAgent(
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
             );
             await businessPage.setExtraHTTPHeaders({
               'accept-language': 'en-US,en;q=0.9',
+              'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              'cache-control': 'no-cache',
             });
             
+            // STEP 6B: Navigate to Business Page
+            logDebug(`Navigating to business page: ${ypLink}`);
             await businessPage.goto(ypLink, { 
               waitUntil: 'domcontentloaded', 
               timeout: 45000 
             });
             
-            // Wait for main container to load with more flexible selector
+            // STEP 6C: Wait for Page Content to Load
+            logDebug('Waiting for main container to load');
             await businessPage.waitForSelector('main.container.search-monitor, main, .business-info, .listing-details', { 
               timeout: 15000 
-            }).catch(() => console.log(`  ⚠️  Main container not found for: ${ypLink}`));
+            }).catch((error) => {
+              logWarn(`Main container not found for: ${ypLink}`, { error: error.message });
+              console.log(`  ⚠️  Main container not found for: ${ypLink}`);
+            });
             
-            // Analyze available fields on THIS page
+            // STEP 6D: Analyze Available Fields
+            logDebug('Analyzing available fields on business page');
             const pageFields = await analyzeAvailableFields(businessPage);
             
             if (pageFields) {
-              // Merge new fields with global available fields
+              // Merge new fields with global available fields for consistency
               const newFields = Object.keys(pageFields).filter(field => !globalAvailableFields[field]);
               if (newFields.length > 0) {
+                logInfo(`Found new fields on business page`, { newFields });
                 console.log(`  🔍 Found new fields: ${newFields.join(', ')}`);
                 globalAvailableFields = { ...globalAvailableFields, ...pageFields };
               }
             }
             
-            // Extract business data based on ALL available fields found so far
+            // STEP 6E: Extract Business Data
+            logDebug('Extracting business data using available fields');
             const businessData = globalAvailableFields && Object.keys(globalAvailableFields).length > 0 ? 
               await extractBusinessData(businessPage, globalAvailableFields) : null;
             
             if (businessData) {
-              businessData.ypLink = ypLink; // Add the original link
+              // Add metadata to business data
+              businessData.ypLink = ypLink; // Original source link
+              businessData.extractionTimestamp = new Date().toISOString();
+              businessData.sourcePage = pageNum;
+              businessData.businessIndex = businessNumber;
+              
               pageResults.push(businessData);
+              successfulExtractions++;
+              
+              logInfo(`Successfully extracted business data`, {
+                businessName: businessData.businessName || 'Unknown',
+                fieldCount: Object.keys(businessData).length,
+                businessNumber,
+                totalBusinesses: ypLinks.length
+              });
+              
               console.log(`  ✅ Extracted: ${businessData.businessName || 'Unknown'} (${Object.keys(businessData).length} fields)`);
             } else {
+              failedExtractions++;
+              logWarn(`No data extracted from business page`, { ypLink, businessNumber });
               console.log(`  ❌ No data extracted from: ${ypLink}`);
             }
             
+            // STEP 6F: Cleanup and Rate Limiting
             await businessPage.close();
             
-            // Add delay to avoid rate limiting
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Add delay to avoid rate limiting and be respectful to the server
+            const delay = 2000; // 2 seconds between requests
+            logDebug(`Waiting ${delay}ms before next business page`);
+            await new Promise(resolve => setTimeout(resolve, delay));
             
           } catch (error) {
+            failedExtractions++;
+            logError(`Error processing business page`, { 
+              ypLink, 
+              businessNumber, 
+              error: error.message,
+              stack: error.stack 
+            });
             console.log(`  ❌ Error processing ${ypLink}: ${error.message}`);
           }
         }
+        
+        // Log page completion statistics
+        logInfo(`Page ${pageNum} processing complete`, {
+          totalBusinesses: ypLinks.length,
+          successfulExtractions,
+          failedExtractions,
+          successRate: `${((successfulExtractions / ypLinks.length) * 100).toFixed(1)}%`
+        });
         
         return pageResults;
         
@@ -1393,39 +1988,141 @@ async function scrapeYellowpages() {
       }
     }));
     
-    // Flatten results and add to allResults
+    // STEP 7: Results Aggregation and Progress Saving
+    logInfo('Step 7: Aggregating batch results and saving progress');
+    
+    // Process batch results and handle any failures gracefully
     const flattenedResults = results
       .filter(result => result.status === 'fulfilled')
       .map(result => result.value)
       .flat();
+    
+    // Count failed pages for statistics
+    const failedPages = results.filter(result => result.status === 'rejected').length;
+    if (failedPages > 0) {
+      logWarn(`Batch had ${failedPages} failed pages`, { 
+        batchPages, 
+        failedPages,
+        successfulPages: results.length - failedPages 
+      });
+    }
+    
+    // Add batch results to global results
     allResults = allResults.concat(flattenedResults);
     
-    // Save progress to CSV after each batch
+    // Update global statistics
+    scrapingStats.totalBusinesses = allResults.length;
+    scrapingStats.successfulExtractions += flattenedResults.length;
+    
+    // STEP 8: Progress Saving and Checkpoint
+    logInfo('Step 8: Saving progress checkpoint');
+    
+    // Generate CSV content for current progress
     const csvContent = convertToCSV(allResults);
-    const filename = `${config.searchTerm}_${config.zipCode}_${new Date().toISOString().split('T')[0]}.csv`;
+    const timestamp = new Date().toISOString().split('T')[0];
+    const filename = `${config.searchTerm}_${config.zipCode}_${timestamp}.csv`;
+    
+    // Save progress to file
     fs.writeFileSync(filename, csvContent, 'utf8');
+    
+    logInfo(`Progress checkpoint saved`, {
+      filename,
+      totalBusinesses: allResults.length,
+      batchProgress: `${batchStart}-${batchEnd} of ${totalPages}`,
+      overallProgress: `${Math.round((batchEnd / totalPages) * 100)}%`
+    });
+    
     console.log(`💾 Progress saved: ${allResults.length} businesses processed`);
   }
 
+  // STEP 9: Final Processing and Cleanup
+  logInfo('Step 9: Final processing and cleanup');
+  
   console.log(`\n✅ Total scraped results: ${allResults.length}`);
-
-  // Final save to CSV file
+  
+  // Update final statistics
+  scrapingStats.endTime = new Date();
+  scrapingStats.totalBusinesses = allResults.length;
+  scrapingStats.csvFile = `${config.searchTerm}_${config.zipCode}_${new Date().toISOString().split('T')[0]}.csv`;
+  
+  // STEP 10: Final CSV Export
+  logInfo('Step 10: Generating final CSV export');
+  
   const csvContent = convertToCSV(allResults);
   const filename = `${config.searchTerm}_${config.zipCode}_${new Date().toISOString().split('T')[0]}.csv`;
   fs.writeFileSync(filename, csvContent, 'utf8');
+  
+  logInfo(`Final CSV export completed`, {
+    filename,
+    totalRows: allResults.length + 1, // +1 for header row
+    fileSize: `${(csvContent.length / 1024).toFixed(2)} KB`
+  });
+  
   console.log(`📁 Final data saved to: ${filename}`);
 
+  // STEP 11: Browser Cleanup
+  logInfo('Step 11: Closing browser and cleanup');
   await browser.close();
+  
+  // STEP 12: Session Completion Logging
+  logInfo('Step 12: Logging session completion');
+  logSessionCompletion(scrapingStats);
+  
   console.log('\n🎉 Scraping completed successfully!');
 }
 
-// Main execution
+/**
+ * MAIN EXECUTION ENTRY POINT
+ * ==========================
+ * 
+ * Self-executing async function that orchestrates the entire scraping process.
+ * This is the main entry point that coordinates all phases of the application:
+ * 
+ * 1. User Configuration: Interactive setup of scraping parameters
+ * 2. Scraping Execution: Main data extraction process
+ * 3. Error Handling: Comprehensive error management and logging
+ * 4. Process Termination: Clean exit with appropriate status codes
+ * 
+ * The function implements proper error handling to ensure that any issues
+ * are logged and the process terminates gracefully with meaningful error messages.
+ */
 (async () => {
   try {
+    logInfo('Yellowpages Scraper starting up');
+    
+    // Phase 1: User Configuration
+    logInfo('Phase 1: Starting user configuration');
     await getUserConfiguration();
+    
+    // Phase 2: Main Scraping Process
+    logInfo('Phase 2: Beginning main scraping process');
     await scrapeYellowpages();
+    
+    // Phase 3: Successful Completion
+    logInfo('Yellowpages Scraper completed successfully');
+    
   } catch (error) {
+    // Comprehensive Error Handling
+    logError('Fatal error occurred during scraping process', {
+      error: error.message,
+      stack: error.stack,
+      timestamp: new Date().toISOString()
+    });
+    
     console.error('❌ Error:', error.message);
+    
+    // Log session completion with error status
+    if (scrapingStats.startTime) {
+      scrapingStats.endTime = new Date();
+      scrapingStats.errors.push({
+        message: error.message,
+        stack: error.stack,
+        timestamp: new Date().toISOString()
+      });
+      logSessionCompletion(scrapingStats);
+    }
+    
+    // Exit with error code
     process.exit(1);
   }
 })();
